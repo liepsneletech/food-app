@@ -1,7 +1,7 @@
 <x-front-layout>
     <div class="min-h-screen shadow-inner bg-[#a7d2ca2a]">
         <h1 class="primary-heading pb-7 pt-14 text-center ">
-            Produktai
+            Patiekalai
         </h1>
 
         {{-- sort, filter, search --}}

@@ -10,4 +10,9 @@ class Menu extends Model
     use HasFactory;
 
     protected $fillable = ['title'];
+
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
 }

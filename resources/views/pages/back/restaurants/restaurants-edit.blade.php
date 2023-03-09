@@ -1,7 +1,8 @@
 <x-back-layout>
     <div class="bg-gray-100 min-h-screen pt-8">
         <div class="container">
-            <form method="POST" action="{{ route('admin-restaurants-update', $restaurant) }}" class="w-1/2 mx-auto">
+            <form method="POST" action="{{ route('admin-restaurants-update', $restaurant) }}" class="w-1/2 mx-auto"
+                enctype="multipart/form-data">
                 @csrf
                 @method('put')
 
@@ -44,7 +45,18 @@
                     </p>
                 @enderror
 
-
+                <x-form.label for="menu_id" :value="__('Restoranas')" />
+                <select id="menu_id"
+                    class="block w-full border-gray-300 rounded-full focus:border-gray-300 focus:ring
+                focus:ring-cyan-100 placeholder:text-gray-400"
+                    type="text" name="menu_id">
+                    <option selected disabled>-- Valgiaraštis nepasirinktas</option>
+                    @forelse ($menus as $menu)
+                        <option value="{{ $menu->id }}" @if ($menu->id === $meal->menu_id) selected @endif>
+                            {{ $menu->title }}</option>
+                    @empty
+                    @endforelse
+                </select>
 
                 <x-form.label for="desc" :value="__('Aprašymas')" class="mt-3" />
                 <textarea name="desc" id="desc" rows="3"
@@ -56,6 +68,19 @@
                         {{ $message }}
                     </p>
                 @enderror
+
+                <div class="flex items-center gap-5 p-5 border border-cyan-300 rounded-xl w-fit">
+                    @if (isset($restaurant->img))
+                        <img src="{{ asset($restaurant->img) }}" alt="meal photo" class="w-[200px] rounded-xl">
+                    @else
+                        <img src="/assets/img/fallback-img.jpg" alt="meal photo" class="w-[200px] rounded-xl">
+                    @endif
+
+                    <div class="flex gap-2 px-3 items-center bg-amber-500 hover:bg-[#f5970b] rounded-full">
+                        <x-form.label for="img" :value="__('Pakeisti nuotrauką')" class="py-2 text-white cursor-pointer" />
+                        <input id="img" type="file" name="img" class="hidden mb-2" />
+                    </div>
+                </div>
 
                 <button class="mt-5 mb-10 secondary-btn" type="submit">
                     Išsaugoti

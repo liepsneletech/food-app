@@ -24,16 +24,8 @@
 
                 @forelse ($menus as $menu)
                     <div
-                        class="grid grid-cols-1 lg:grid-cols-5 items-center justify-between gap-5 border-l-8 border-cyan-600 bg-white px-6 py-3.5 rounded-lg">
+                        class="grid grid-cols-1 lg:grid-cols-2 items-center justify-between gap-5 border-l-8 border-cyan-600 bg-white px-6 py-3.5 rounded-lg">
                         <p>{{ $menu->title }}</p>
-                        <p>&euro;{{ $menu->price }}</p>
-                        @if (isset($menu->img))
-                            <img src="{{ asset($menu->img) }}" alt="menu photo" class="w-[200px] rounded-xl">
-                        @else
-                            <img src="/assets/img/fallback-img.jpg" alt="menu photo" class="w-[200px] rounded-xl">
-                        @endif
-
-                        <p class="font-bold">Restoranas: {{ $menu->restaurant->title }}</p>
 
                         <div class="flex gap-3 justify-self-end">
                             <a href="{{ route('admin-menus-edit', $menu) }}">

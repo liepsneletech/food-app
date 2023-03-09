@@ -1,10 +1,10 @@
 <x-back-layout>
-    <div class="bg-gray-100 min-h-screen pt-6">
+    <div class="bg-gray-100 min-h-screen">
         <div class="container">
-            <form method="POST" action="{{ route('admin-meals-store') }}" class="w-1/2 mx-auto">
+            <form method="POST" action="{{ route('admin-menus-store') }}" class="w-1/2 mx-auto">
                 @csrf
 
-                <h1 class="primary-heading mb-6">Valgiaraščio pridėjimas</h1>
+                <h1 class="primary-heading mb-6 mt-24">Valgiaraščio pridėjimas</h1>
 
                 <!-- Success messages -->
                 @if (session()->has('success'))

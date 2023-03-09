@@ -1,7 +1,7 @@
 <x-front-layout>
     <div class="min-h-screen shadow-inner bg-[#a7d2ca2a]">
         <h1 class="primary-heading pb-7 pt-14 text-center ">
-            Teikėjai
+            Restoranai
         </h1>
         <div class="container">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Menu;
 use App\Models\Restaurant;
+use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +18,8 @@ class RestaurantController extends Controller
 
     function create()
     {
-        return view('pages.back.restaurants.restaurants-create');
+        $menus = Menu::all();
+        return view('pages.back.restaurants.restaurants-create', compact('menus'));
     }
 
     public function store(Request $request)
@@ -28,14 +30,14 @@ class RestaurantController extends Controller
                 'code' => ['required'],
                 'address' => ['required'],
                 'desc' => ['required'],
-                'img' => ['image'],
+                'menu_id' => ['required'],
             ],
             [
                 'title.required' => 'Pavadinimo laukelis privalomas',
                 'code.required' => 'Kodo laukelis privalomas',
                 'address.required' => 'Adreso numerio laukelis privalomas',
                 'desc.required' => 'Aprašymo laukelis privalomas',
-                'img.image' => 'Netinkamas nuotraukos formatas',
+                'menu_id.required' => 'Aprašymo laukelis privalomas',
             ]
         );
 
@@ -62,7 +64,8 @@ class RestaurantController extends Controller
     function edit(Restaurant $restaurant)
     {
         $restaurants = Restaurant::all();
-        return view('pages.back.restaurants.restaurants-edit', compact('restaurant'));
+        $menus = Menu::all();
+        return view('pages.back.restaurants.restaurants-edit', compact('restaurant', 'menus'));
     }
 
     function update(Request $request, Restaurant $restaurant)
@@ -70,16 +73,17 @@ class RestaurantController extends Controller
         $incomingFields = $request->validate(
             [
                 'title' => ['required'],
-                'code' => ['required', 'max:9'],
+                'code' => ['required'],
                 'address' => ['required'],
                 'desc' => ['required'],
+                'menu_id' => ['required'],
             ],
             [
                 'title.required' => 'Pavadinimo laukelis privalomas',
                 'code.required' => 'Kodo laukelis privalomas',
-                'max.required' => 'Kodas per ilgas',
                 'address.required' => 'Adreso numerio laukelis privalomas',
                 'desc.required' => 'Aprašymo laukelis privalomas',
+                'menu_id.required' => 'Aprašymo laukelis privalomas',
             ]
         );
 

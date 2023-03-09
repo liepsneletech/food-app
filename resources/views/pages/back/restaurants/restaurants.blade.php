@@ -16,7 +16,12 @@
 
                 @forelse ($restaurants as $restaurant)
                     <div
-                        class="grid grid-cols-1 lg:grid-cols-4 items-center justify-between gap-5 border-l-8 border-cyan-600 bg-white px-6 py-3 rounded-lg">
+                        class="grid grid-cols-1 lg:grid-cols-5 items-center justify-between gap-5 border-l-8 border-cyan-600 bg-white px-6 py-3 rounded-lg">
+                        @if (isset($restaurant->img))
+                            <img src="{{ asset($restaurant->img) }}" alt="meal photo" class="w-[200px] rounded-xl">
+                        @else
+                            <img src="/assets/img/fallback-img.jpg" alt="meal photo" class="w-[200px] rounded-xl">
+                        @endif
                         <p class="font-bold">{{ $restaurant->title }}</p>
                         <p>{{ $restaurant->address }}</p>
                         <p>{{ $restaurant->tel }}</p>
