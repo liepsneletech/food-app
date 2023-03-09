@@ -8,14 +8,14 @@
         <div class="container flex mb-8 justify-between border px-7 py-4 rounded-[35px] border-cyan-300">
             <form action="{{ route('meals-index') }}">
                 {{-- filter --}}
-                <label for="provider_id" class="filters-label font-semibold text-cyan-900">Restoranas:</label>
-                <select name="provider_id" id="provider_id"
+                <label for="restaurant_id" class="filters-label font-semibold text-cyan-900">Restoranas:</label>
+                <select name="restaurant_id" id="restaurant_id"
                     class=" border-0 rounded-full focus:border-cyan-300 focus:ring
                 focus:ring-cyan-100 placeholder:text-gray-400 text-gray-500 mr-2">
                     <option selected disabled value="Pasirinkite šalį">Pasirinkite restoraną</option>
-                    @foreach ($restaurants as $provider)
-                        <option value="{{ $provider->id }}" @if ($provider->id == $restaurantshow) selected @endif>
-                            {{ $provider->title }}</option>
+                    @foreach ($restaurants as $restaurant)
+                        <option value="{{ $restaurant->id }}" @if ($restaurant->id == $restaurantshow) selected @endif>
+                            {{ $restaurant->title }}</option>
                     @endforeach
                 </select>
 
@@ -70,7 +70,7 @@
                                 <p><i class="fa-solid fa-tag w-4"></i>
                                     &euro; {{ $meal->price }}</p>
                                 <p><i class="fa-solid fa-location-dot w-4"></i>
-                                    {{ $meal->provider->title }}</p>
+                                    {{ $meal->restaurant->title }}</p>
                             </div>
                             <p class="pt-2">{{ substr($meal->desc, 0, 115) . '...' }}</p>
                         </div>

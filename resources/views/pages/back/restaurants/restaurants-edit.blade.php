@@ -24,6 +24,16 @@
                     </p>
                 @enderror
 
+                <x-form.label for="code" :value="__('Įmonės kodas')" />
+                <x-form.input id="code" class="block mt-1 w-full mb-2" type="text" name="code"
+                    value="{{ $restaurant->code }}" />
+
+                @error('tel')
+                    <p class="text-white bg-red-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
+                        {{ $message }}
+                    </p>
+                @enderror
+
                 <x-form.label for="address" :value="__('Adresas')" />
                 <x-form.input id="address" class="block mt-1 w-full mb-2" type="text" name="address"
                     value="{{ $restaurant->address }}" />
@@ -34,15 +44,7 @@
                     </p>
                 @enderror
 
-                <x-form.label for="tel" :value="__('Telefonas')" />
-                <x-form.input id="tel" class="block mt-1 w-full mb-2" type="text" name="tel"
-                    value="{{ $restaurant->tel }}" />
 
-                @error('tel')
-                    <p class="text-white bg-red-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
-                        {{ $message }}
-                    </p>
-                @enderror
 
                 <x-form.label for="desc" :value="__('Aprašymas')" class="mt-3" />
                 <textarea name="desc" id="desc" rows="3"

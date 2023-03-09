@@ -10,15 +10,10 @@ class Restaurant extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'desc', 'address', 'code', 'menu_id'];
+    protected $fillable = ['title', 'desc', 'address', 'code', 'img'];
 
     public function meals()
     {
         return $this->hasMany(Meal::class);
-    }
-
-    public function menu(): HasOne
-    {
-        return $this->hasOne(Menu::class);
     }
 }

@@ -5,7 +5,7 @@
                 enctype="multipart/form-data">
                 @csrf
 
-                <h1 class="primary-heading mb-6">patiekalo pridėjimas</h1>
+                <h1 class="primary-heading mb-6">Patiekalo pridėjimas</h1>
 
                 <!-- Success messages -->
                 @if (session()->has('success'))

@@ -4,7 +4,7 @@
             Apmokėjimas
         </h1>
 
-        <div class="container flex justify-between border p-7 rounded-xl border-cyan-300">
+        <div class="container flex justify-between border p-7 rounded-xl border-cyan-300 mb-16">
             {{-- meal info --}}
             <div class="container">
                 <div class="grid grid-cols-1 lg:grid-cols-[30%_25%_auto] gap-7 p-7 bg-white rounded-xl">
@@ -17,7 +17,7 @@
                         <div class="flex justify-between items-center mb-5">
                             <div>
                                 <p class="text-lg"><i class="fa-solid fa-location-dot w-4"></i>
-                                    {{ $meal->provider->title }}</p>
+                                    {{ $meal->restaurant->title }}</p>
                                 <p class="text-xl"><i class="fa-solid fa-tag w-4"></i>
                                     &euro; {{ $meal->price }}</p>
                             </div>

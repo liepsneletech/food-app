@@ -6,7 +6,7 @@
                 @csrf
                 @method('put')
 
-                <h1 class="primary-heading mb-6">Patiekalo redagavimas</h1>
+                <h1 class="primary-heading mb-6">Valgiaraščio redagavimas</h1>
 
                 <!-- Success message -->
                 @if (session()->has('success'))
@@ -35,19 +35,19 @@
                     </p>
                 @enderror
 
-                <x-form.label for="restaurant_id" :value="__('Restoranas')" />
-                <select id="restaurant_id"
+                <x-form.label for="menu_id" :value="__('Restoranas')" />
+                <select id="menu_id"
                     class="block w-full border-gray-300 rounded-full focus:border-gray-300 focus:ring
                     focus:ring-cyan-100 placeholder:text-gray-400 mb-5"
-                    type="text" name="restaurant_id">
+                    type="text" name="menu_id">
                     <option>-- Restoranas nepasirinktas</option>
-                    @foreach ($restaurants as $restaurant)
-                        <option value="{{ $restaurant->id }}" @if ($restaurant->id === $meal->restaurant_id) selected @endif>
-                            {{ $restaurant->title }}</option>
+                    @foreach ($menus as $menu)
+                        <option value="{{ $menu->id }}" @if ($menu->id === $meal->menu_id) selected @endif>
+                            {{ $menu->title }}</option>
                     @endforeach
                 </select>
 
-                @error('restaurant_id')
+                @error('menu_id')
                     <p class="text-white bg-red-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
                         {{ $message }}
                     </p>

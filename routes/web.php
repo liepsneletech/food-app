@@ -55,12 +55,12 @@ Route::middleware('roles:admin')->prefix('admin')->name('admin-')->group(functio
     Route::delete('/meals/delete/{meal}', [MealController::class, 'delete'])->name('meals-delete');
 
     // menus
-    Route::get('/menus', [MealController::class, 'index'])->name('menus-index');
-    Route::get('/menus/create', [MealController::class, 'create'])->name('menus-create');
-    Route::post('/menus/create', [MealController::class, 'store'])->name('menus-store');
-    Route::get('/menus/edit/{menu}', [MealController::class, 'edit'])->name('menus-edit');
-    Route::put('/menus-edit/{menu}', [MealController::class, 'update'])->name('menus-update');
-    Route::delete('/menus/delete/{menu}', [MealController::class, 'delete'])->name('menus-delete');
+    Route::get('/menus', [MenuController::class, 'index'])->name('menus-index');
+    Route::get('/menus/create', [MenuController::class, 'create'])->name('menus-create');
+    Route::post('/menus/create', [MenuController::class, 'store'])->name('menus-store');
+    Route::get('/menus/edit/{menu}', [MenuController::class, 'edit'])->name('menus-edit');
+    Route::put('/menus-edit/{menu}', [MenuController::class, 'update'])->name('menus-update');
+    Route::delete('/menus/delete/{menu}', [MenuController::class, 'delete'])->name('menus-delete');
 
     // users
     Route::get('/users', [UserController::class, 'index'])->name('users-index');

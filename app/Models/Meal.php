@@ -10,7 +10,7 @@ class Meal extends Model
 {
     use HasFactory, Searchable;
 
-    protected $fillable = ['title', 'desc', 'img', 'price', 'menu_id'];
+    protected $fillable = ['title', 'desc', 'img', 'price', 'restaurant_id'];
 
     const SORT = [
         'asc_price' => 'Kaina nuo mažiausios',
@@ -25,9 +25,9 @@ class Meal extends Model
         ];
     }
 
-    public function menu()
+    public function restaurant()
     {
-        return $this->belongsTo(Menu::class);
+        return $this->belongsTo(Restaurant::class);
     }
 
     public function order()

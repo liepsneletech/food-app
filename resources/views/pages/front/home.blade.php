@@ -5,7 +5,7 @@
         class="hero bg-[url('/public/assets/img/hero-bg.jpg')] bg-cover bg-no-repeat bg-fixed hero h-[85.5vh] flex items-center relative">
         <div class="container">
             <div class=" flex flex-col items-end gap-4">
-                <h1 class="primary-heading text-right">Pagrindinis šūkis</h1>
+                <h1 class="primary-heading text-right">Atrask naujus skonius!</h1>
                 <p class="font-['Josefin_Sans'] text-white lg:w-1/2 text-right mb-4">Curabitur aliquet quam amet,
                     consectetur
                     adipiscing elit lorem ut libero malesuada luctus et ultrices posuere cubilia feugiat adipiscing elit

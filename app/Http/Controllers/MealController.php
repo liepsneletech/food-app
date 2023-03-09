@@ -25,24 +25,18 @@ class MealController extends Controller
 
     public function store(Request $request)
     {
-        $restaurants = Restaurant::all();
-        if ($restaurants->isEmpty()) {
-            redirect()->back()->with('error', 'Negalima pridėti produktų, jei nėra pridėtų teikėjų.');
-        }
-
         $incomingFields = $request->validate([
             'title' => ['required'],
             'desc' => ['required'],
-            'provider_id' => ['required'],
-            'img' => ['image', 'max:3000'],
+            'img' => ['image'],
             'price' => ['required'],
+            'restaurant_id' => ['required'],
         ], [
             'title.required' => 'Pavadinimo laukelis yra privalomas',
             'desc.required' => 'Aprašymo laukelis yra privalomas',
-            'provider_id.required' => 'Restorano laukelis yra privalomas',
             'img.image' => 'Netinkamas nuotraukos formatas',
-            'img.max' => 'Nuotraukos dydis viršija 3MB.',
             'price.required' => 'Kainos laukelis yra būtinas.',
+            'restaurant_id.required' => 'Būtina pasirinkti restoraną',
         ]);
 
         if ($request->file('img')) {
@@ -68,7 +62,7 @@ class MealController extends Controller
     function edit(Meal $meal, Restaurant $restaurant)
     {
         $restaurants = Restaurant::all();
-        return view('pages.back.meals.meals-edit', compact('meal', 'restaurants', 'provider'));
+        return view('pages.back.meals.meals-edit', compact('meal', 'restaurants', 'restaurant'));
     }
 
     function update(Request $request, Meal $meal)
@@ -76,15 +70,14 @@ class MealController extends Controller
         $incomingFields = $request->validate([
             'title' => ['required'],
             'desc' => ['required'],
-            'provider_id' => ['required'],
-            'img' => ['image', 'max:3000'],
+            'img' => ['image'],
             'price' => ['required'],
+            'restaurant_id' => ['required'],
         ], [
             'title.required' => 'Pavadinimo laukelis yra privalomas',
             'desc.required' => 'Aprašymo laukelis yra privalomas',
-            'provider_id.required' => 'Šis laukelis yra privalomas',
+            'restaurant_id.required' => 'Būtina pasirinkti restoraną',
             'img.image' => 'Netinkamas nuotraukos formatas',
-            'img.max' => 'Nuotraukos dydis viršija 3MB.',
             'price.required' => 'Kainos laukelis yra būtinas.',
         ]);
 

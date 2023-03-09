@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
@@ -26,18 +28,32 @@ class RestaurantController extends Controller
                 'code' => ['required'],
                 'address' => ['required'],
                 'desc' => ['required'],
-                'menu_id' => ['required'],
+                'img' => ['image'],
             ],
             [
                 'title.required' => 'Pavadinimo laukelis privalomas',
                 'code.required' => 'Kodo laukelis privalomas',
                 'address.required' => 'Adreso numerio laukelis privalomas',
                 'desc.required' => 'Aprašymo laukelis privalomas',
-                'menu_id.required' => 'Būtina pasirinkti valgiaraštį',
+                'img.image' => 'Netinkamas nuotraukos formatas',
             ]
         );
 
-        $incomingFields['menu_id'] = 1;
+        if ($request->file('img')) {
+
+            $image = $request->file('img');
+
+            $name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            $fileName = $name . '-' . uniqid() . '.jpg';
+
+            $image = Image::make($image)->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->crop(500, 300)->encode('jpg');
+
+            Storage::put("public/meals/$fileName", $image);
+            $incomingFields['img'] = "/storage/meals/$fileName";
+        }
+
         Restaurant::create($incomingFields);
 
         return redirect()->back()->with('success', 'Pridėjimas sėkmingas.');
@@ -54,24 +70,37 @@ class RestaurantController extends Controller
         $incomingFields = $request->validate(
             [
                 'title' => ['required'],
-                'code' => ['required'],
+                'code' => ['required', 'max:9'],
                 'address' => ['required'],
                 'desc' => ['required'],
-                'menu_id' => ['required'],
             ],
             [
                 'title.required' => 'Pavadinimo laukelis privalomas',
                 'code.required' => 'Kodo laukelis privalomas',
+                'max.required' => 'Kodas per ilgas',
                 'address.required' => 'Adreso numerio laukelis privalomas',
                 'desc.required' => 'Aprašymo laukelis privalomas',
-                'menu_id.required' => 'Būtina pasirinkti valgiaraštį',
             ]
         );
 
-        $incomingFields['menu_id'] = 1;
+        if ($request->file('img')) {
+
+            $image = $request->file('img');
+
+            $name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            $fileName = $name . '-' . uniqid() . '.jpg';
+
+            $image = Image::make($image)->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->crop(500, 300)->encode('jpg');
+
+            Storage::put("public/meals/$fileName", $image);
+            $incomingFields['img'] = "/storage/meals/$fileName";
+        }
+
         $restaurant->update($incomingFields);
 
-        return redirect()->back()->with('success', 'Pridėjimas sėkmingas.');
+        return redirect()->back()->with('success', 'Atnaujinimas sėkmingas.');
     }
 
     function delete(Restaurant $restaurant)
