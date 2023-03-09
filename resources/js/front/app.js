@@ -114,21 +114,6 @@ dropdownContent.addEventListener("mouseleave", function () {
     dropdownContent.classList.remove("show");
 });
 
-// accordion
-const cards = document.querySelectorAll(".card");
-
-cards.forEach((card) => {
-    const btn = card.querySelector(".accordion-btn");
-    btn.addEventListener("click", () => {
-        cards.forEach((item) => {
-            if (item !== card) {
-                item.classList.remove("show");
-            }
-        });
-        card.classList.toggle("show");
-    });
-});
-
 // order accordion
 const orders = document.querySelectorAll(".order");
 
@@ -175,3 +160,18 @@ function carousel() {
         slide.style.transform = `translateX(-${counter * 100}%)`;
     });
 }
+
+// accordion
+const cards = document.querySelectorAll(".card");
+
+cards.forEach((card) => {
+    const btn = card.querySelector(".accordion-btn");
+    btn.addEventListener("click", () => {
+        cards.forEach((item) => {
+            if (item !== card) {
+                item.classList.remove("show");
+            }
+        });
+        card.classList.toggle("show");
+    });
+});
