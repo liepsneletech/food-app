@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Review;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->string('reviewer', 30);
-            $table->unsignedTinyInteger('rate')->default(0);
-            $table->text('review_text', 200);
+            $table->string('title', 50);
+            $table->text('desc', 150);
+            $table->string('address', 40);
+            $table->string('img', 200)->nullable();
+            $table->string('code', 9);
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('restaurants');
     }
 };

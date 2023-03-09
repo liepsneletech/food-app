@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'surname', 'email', 'user_id', 'product_id'];
+    protected $fillable = ['name', 'surname', 'email', 'user_id', 'meal_id'];
 
     const STATUS = [
         'Nepatvirtintas' => 0,
@@ -17,9 +17,9 @@ class Order extends Model
         'Atšauktas' => 2,
     ];
 
-    public function product()
+    public function meal()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Meal::class);
     }
 
     public function user()

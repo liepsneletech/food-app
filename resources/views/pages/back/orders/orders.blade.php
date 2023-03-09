@@ -15,7 +15,7 @@
                             </p>
                             <p class="text-gray-700"><span>{{ $order->name }}
                                     {{ $order->surname }}</span></p>
-                            <p class="text-gray-700"><b>Iš viso:</b> <span>{{ $order->product->price }} &euro;</span>
+                            <p class="text-gray-700"><b>Iš viso:</b> <span>{{ $order->meal->price }} &euro;</span>
                             </p>
                             <p
                                 class="justify-self-center @if ($order->status == 0) order-not-approved @elseif($order->status == 1) order-approved @else order-canceled @endif">
@@ -57,7 +57,7 @@
                         </div>
                         {{-- order body --}}
                         <div class="order-body bg-cyan-500 text-white rounded-br-lg">
-                            <p class="p-5">{{ $order->product->desc }}</p>
+                            <p class="p-5">{{ $order->meal->desc }}</p>
                         </div>
                     </article>
                 @empty

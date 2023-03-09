@@ -5,7 +5,7 @@
         </h1>
         <div class="container">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
-                @forelse ($providers as $provider)
+                @forelse ($restaurants as $provider)
                     {{-- provider card --}}
                     <article class="card">
                         {{-- card head --}}
@@ -18,10 +18,10 @@
                                     <div class="grid gap-2 justify-center items-start">
 
                                         @if (isset($provider->img))
-                                            <img src="{{ asset($provider->img) }}" alt="product photo"
+                                            <img src="{{ asset($provider->img) }}" alt="meal photo"
                                                 class="w-[300px] rounded-xl">
                                         @else
-                                            <img src="/assets/img/fallback-img.jpg" alt="product photo"
+                                            <img src="/assets/img/fallback-img.jpg" alt="meal photo"
                                                 class="w-[300px] rounded-xl">
                                         @endif
                                     </div>
@@ -54,7 +54,7 @@
                         </div>
                     </article>
                 @empty
-                    <p>Nepridėtas nė vienas teikėjas.</p>
+                    <p>Nepridėtas nė vienas restoranas.</p>
                 @endforelse
             </div>
         </div>

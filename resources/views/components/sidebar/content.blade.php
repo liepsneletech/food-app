@@ -6,21 +6,21 @@
         </x-slot>
     </x-sidebar.link>
 
-    <x-sidebar.link title="Teikėjai" href="{{ route('admin-providers-index') }}" :isActive="request()->routeIs('admin-providers-index')">
+    <x-sidebar.link title="Restoranai" href="{{ route('admin-restaurants-index') }}" :isActive="request()->routeIs('admin-restaurants-index')">
         <x-slot name="icon">
             <i class="fa-solid fa-building-columns text-center w-6" aria-hidden='true'></i>
         </x-slot>
     </x-sidebar.link>
 
-    <x-sidebar.link title="Produktai" href="{{ route('admin-products-index') }}" :isActive="request()->routeIs('admin-products-index')">
+    <x-sidebar.link title="Valgiaraščiai" href="{{ route('admin-menus-index') }}" :isActive="request()->routeIs('admin-menus-index')">
         <x-slot name="icon">
-            <i class="fa-solid fa-circle-nodes text-center w-6" aria-hidden='true'></i>
+            <i class="fa-solid fa-building-columns text-center w-6" aria-hidden='true'></i>
         </x-slot>
     </x-sidebar.link>
 
-    <x-sidebar.link title="Atsiliepimai" href="{{ route('admin-reviews-index') }}" :isActive="request()->routeIs('admin-reviews-index')">
+    <x-sidebar.link title="Patiekalai" href="{{ route('admin-meals-index') }}" :isActive="request()->routeIs('admin-meals-index')">
         <x-slot name="icon">
-            <i class="fa-solid fa-star text-center w-6" aria-hidden='true'></i>
+            <i class="fa-solid fa-circle-nodes text-center w-6" aria-hidden='true'></i>
         </x-slot>
     </x-sidebar.link>
 

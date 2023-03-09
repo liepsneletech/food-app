@@ -2,31 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\product;
-use App\Models\Provider;
+use App\Models\Meal;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
-class productController extends Controller
+class MealController extends Controller
 {
-    public function index(product $product)
+    public function index(Meal $meal)
     {
-        $products = product::all();
-        return view('pages.back.products.products', compact('product', 'products'));
+        $meals = Meal::all();
+        return view('pages.back.meals.meals', compact('meal', 'meals'));
     }
 
-    function create(Provider $provider)
+    function create(Restaurant $restaurant)
     {
-        $providers = Provider::all();
-        return view('pages.back.products.products-create', compact('provider', 'providers'));
+        $restaurants = Restaurant::all();
+        return view('pages.back.meals.meals-create', compact('restaurant', 'restaurants'));
     }
 
     public function store(Request $request)
     {
-        $providers = Provider::all();
-        if ($providers->isEmpty()) {
+        $restaurants = Restaurant::all();
+        if ($restaurants->isEmpty()) {
             redirect()->back()->with('error', 'Negalima pridėti produktų, jei nėra pridėtų teikėjų.');
         }
 
@@ -56,22 +56,22 @@ class productController extends Controller
                 $constraint->aspectRatio();
             })->crop(500, 300)->encode('jpg');
 
-            Storage::put("public/products/$fileName", $image);
-            $incomingFields['img'] = "/storage/products/$fileName";
+            Storage::put("public/meals/$fileName", $image);
+            $incomingFields['img'] = "/storage/meals/$fileName";
         }
 
-        Product::create($incomingFields);
+        Meal::create($incomingFields);
 
         return redirect()->back()->with('success', 'Pridėjimas sėkmingas.');
     }
 
-    function edit(Product $product, Provider $provider)
+    function edit(Meal $meal, Restaurant $restaurant)
     {
-        $providers = Provider::all();
-        return view('pages.back.products.products-edit', compact('product', 'providers', 'provider'));
+        $restaurants = Restaurant::all();
+        return view('pages.back.meals.meals-edit', compact('meal', 'restaurants', 'provider'));
     }
 
-    function update(Request $request, Product $product)
+    function update(Request $request, Meal $meal)
     {
         $incomingFields = $request->validate([
             'title' => ['required'],
@@ -99,21 +99,21 @@ class productController extends Controller
                 $constraint->aspectRatio();
             })->crop(500, 300)->encode('jpg');
 
-            Storage::put("public/products/$fileName", $image);
-            $incomingFields['img'] = "/storage/products/$fileName";
+            Storage::put("public/meals/$fileName", $image);
+            $incomingFields['img'] = "/storage/meals/$fileName";
 
-            $oldImage = $product->img;
+            $oldImage = $meal->img;
             Storage::delete(str_replace("storage", "public/", $oldImage));
         }
 
-        $product->update($incomingFields);
+        $meal->update($incomingFields);
 
         return redirect()->back()->with('success', 'Atnaujinimas sėkmingas.');
     }
 
-    function delete(Product $product)
+    function delete(Meal $meal)
     {
-        $product->delete();
+        $meal->delete();
         return redirect()->back()->with('success', 'Ištrynimas sėkmingas');
     }
 }

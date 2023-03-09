@@ -13,14 +13,14 @@
                 <button class="primary-btn">Paslaugos</button>
             </div>
 
-            <a href="#products"
+            <a href="#meals"
                 class="text-3xl opacity-85 text-cyan-800 absolute right-[50%] translate-x-1/2 bottom-8 animate-pulse"><i
                     class="fa-solid fa-angles-down"></i></a>
         </div>
     </section>
 
-    {{-- products section --}}
-    <section class="products container" id="products">
+    {{-- meals section --}}
+    <section class="meals container" id="meals">
         <h2 class="primary-heading text-center">Paslaugos</h2>
     </section>
 

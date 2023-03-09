@@ -21,17 +21,17 @@
                 Produktai
                 <ul
                     class="dropdown-content bg-cyan-800 text-white text-sm absolute top-7 w-[160px] p-4 rounded-xl shadow-md z-10">
-                    <li><a href="{{ route('products-index') }}"
+                    <li><a href="{{ route('meals-index') }}"
                             class="inline-block mb-2 border-b-2 border-transparent hover:border-b-2 hover:border-cyan-500">Užsakyti
                             produktą</a>
                     </li>
-                    <li><a href="{{ route('products-index') }}"
+                    <li><a href="{{ route('meals-index') }}"
                             class="inline-block mb-2 border-b-2 border-transparent hover:border-b-2 hover:border-cyan-500">Produktų
                             sąrašas</a>
                     </li>
                 </ul>
             </div>
-            <x-nav-link :href="route('providers-index')" :active="request()->routeIs('providers-index')">
+            <x-nav-link :href="route('restaurants-index')" :active="request()->routeIs('restaurants-index')">
                 {{ __('Teikėjai') }}
             </x-nav-link>
             <x-nav-link href="/#about" :active="request()->routeIs('/#about')">

@@ -1,10 +1,10 @@
 <x-back-layout>
     <div class="bg-gray-100 min-h-screen pt-8">
         <div class="container">
-            <form method="POST" action="{{ route('admin-providers-store') }}" class="w-1/2 mx-auto">
+            <form method="POST" action="{{ route('admin-restaurants-store') }}" class="w-1/2 mx-auto">
                 @csrf
 
-                <h1 class="primary-heading mb-6">Teikėjo pridėjimas</h1>
+                <h1 class="primary-heading mb-6">Restorano pridėjimas</h1>
 
                 <!-- Success messages -->
                 @if (session()->has('success'))
@@ -13,7 +13,7 @@
                     </p>
                 @endif
 
-                <x-form.label for="title" :value="__('Teikėjas')" />
+                <x-form.label for="title" :value="__('Restoranas')" />
                 <x-form.input id="title" class="block mt-1 w-full mb-2" type="text" name="title"
                     :value="old('title')" autofocus />
 

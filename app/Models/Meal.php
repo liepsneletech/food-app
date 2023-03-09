@@ -6,11 +6,11 @@ use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Product extends Model
+class Meal extends Model
 {
     use HasFactory, Searchable;
 
-    protected $fillable = ['title', 'img', 'desc', 'price', 'provider_id'];
+    protected $fillable = ['title', 'desc', 'img', 'price', 'menu_id'];
 
     const SORT = [
         'asc_price' => 'Kaina nuo mažiausios',
@@ -25,14 +25,9 @@ class Product extends Model
         ];
     }
 
-    public function provider()
+    public function menu()
     {
-        return $this->belongsTo(Provider::class);
-    }
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
+        return $this->belongsTo(Menu::class);
     }
 
     public function order()

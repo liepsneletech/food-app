@@ -5,8 +5,9 @@ use App\Http\Controllers\BackController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProviderController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\MealController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 
@@ -15,20 +16,18 @@ use App\Http\Controllers\UserController;
 Route::get('/', [FrontController::class, 'index'])->name('index');
 // home
 Route::get('/home', [FrontController::class, 'home'])->name('home')->middleware('roles:guest|customer');
-// providers
-Route::get('/providers', [FrontController::class, 'providers'])->name('providers-index')->middleware('roles:guest|customer');
-// products
-Route::get('/products', [FrontController::class, 'products'])->name('products-index')->middleware('roles:guest|customer');
-// product
-Route::get('/products/{product}', [FrontController::class, 'singleProduct'])->name('single-product')->middleware('roles:guest|customer');
+// restaurants
+Route::get('/restaurants', [FrontController::class, 'restaurants'])->name('restaurants-index')->middleware('roles:guest|customer');
+// meals
+Route::get('/meals', [FrontController::class, 'meals'])->name('meals-index')->middleware('roles:guest|customer');
+// meal
+Route::get('/meals/{meal}', [FrontController::class, 'singlemeal'])->name('single-meal')->middleware('roles:guest|customer');
 // checkout
-Route::get('/checkout/{product}', [FrontController::class, 'checkout'])->name('checkout')->middleware('roles:customer');
+Route::get('/checkout/{meal}', [FrontController::class, 'checkout'])->name('checkout')->middleware('roles:customer');
 // make order
-Route::post('/make-order/{product}', [FrontController::class, 'makeOrder'])->name('make-order')->middleware('roles:customer');
+Route::post('/make-order/{meal}', [FrontController::class, 'makeOrder'])->name('make-order')->middleware('roles:customer');
 // success order
 Route::get('/order-success', [FrontController::class, 'orderSuccess'])->name('order-success')->middleware('roles:customer');
-// reviews
-Route::post('/make-review/{product}', [FrontController::class,  'makeReview'])->name('make-review')->middleware('roles:guest|customer');
 // orders
 Route::get('/orders', [FrontController::class, 'userOrders'])->name('user-orders')->middleware('roles:customer');
 
@@ -39,29 +38,29 @@ Route::middleware('roles:admin')->prefix('admin')->name('admin-')->group(functio
     // dashboard
     Route::get('/dashboard', [BackController::class, 'dashboard'])->name('dashboard');
 
-    // providers
-    Route::get('/providers', [ProviderController::class, 'index'])->name('providers-index');
-    Route::get('/providers/create', [ProviderController::class, 'create'])->name('providers-create');
-    Route::post('/providers/create', [ProviderController::class, 'store'])->name('providers-store');
-    Route::get('/providers/edit/{provider}', [ProviderController::class, 'edit'])->name('providers-edit');
-    Route::put('/providers/edit/{provider}', [ProviderController::class, 'update'])->name('providers-update');
-    Route::delete('/providers/delete/{provider}', [ProviderController::class, 'delete'])->name('providers-delete');
+    // restaurants
+    Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants-index');
+    Route::get('/restaurants/create', [RestaurantController::class, 'create'])->name('restaurants-create');
+    Route::post('/restaurants/create', [RestaurantController::class, 'store'])->name('restaurants-store');
+    Route::get('/restaurants/edit/{restaurant}', [RestaurantController::class, 'edit'])->name('restaurants-edit');
+    Route::put('/restaurants/edit/{restaurant}', [RestaurantController::class, 'update'])->name('restaurants-update');
+    Route::delete('/restaurants/delete/{restaurant}', [RestaurantController::class, 'delete'])->name('restaurants-delete');
 
-    // products
-    Route::get('/products', [ProductController::class, 'index'])->name('products-index');
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products-create');
-    Route::post('/products/create', [ProductController::class, 'store'])->name('products-store');
-    Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('products-edit');
-    Route::put('/products-edit/{product}', [ProductController::class, 'update'])->name('products-update');
-    Route::delete('/products/delete/{product}', [ProductController::class, 'delete'])->name('products-delete');
+    // meals
+    Route::get('/meals', [MealController::class, 'index'])->name('meals-index');
+    Route::get('/meals/create', [MealController::class, 'create'])->name('meals-create');
+    Route::post('/meals/create', [MealController::class, 'store'])->name('meals-store');
+    Route::get('/meals/edit/{meal}', [MealController::class, 'edit'])->name('meals-edit');
+    Route::put('/meals-edit/{meal}', [MealController::class, 'update'])->name('meals-update');
+    Route::delete('/meals/delete/{meal}', [MealController::class, 'delete'])->name('meals-delete');
 
-    // reviews
-    Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews-index');
-    Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews-create');
-    Route::post('/reviews/create', [ReviewController::class, 'store'])->name('reviews-store');
-    Route::get('/reviews/edit/{review}', [ReviewController::class, 'edit'])->name('reviews-edit');
-    Route::put('/reviews-edit/{review}', [ReviewController::class, 'update'])->name('reviews-update');
-    Route::delete('/reviews/delete/{review}', [ReviewController::class, 'delete'])->name('reviews-delete');
+    // menus
+    Route::get('/menus', [MealController::class, 'index'])->name('menus-index');
+    Route::get('/menus/create', [MealController::class, 'create'])->name('menus-create');
+    Route::post('/menus/create', [MealController::class, 'store'])->name('menus-store');
+    Route::get('/menus/edit/{menu}', [MealController::class, 'edit'])->name('menus-edit');
+    Route::put('/menus-edit/{menu}', [MealController::class, 'update'])->name('menus-update');
+    Route::delete('/menus/delete/{menu}', [MealController::class, 'delete'])->name('menus-delete');
 
     // users
     Route::get('/users', [UserController::class, 'index'])->name('users-index');

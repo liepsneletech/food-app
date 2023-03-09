@@ -18,7 +18,7 @@
                                 <p class="text-gray-700"><b>Vardas:</b> <span>{{ $order->name }}</span></p>
                                 <p class="text-gray-700"><b>Pavardė:</b> <span>{{ $order->surname }}</span>
                                 </p>
-                                <p class="text-gray-700"><b>Iš viso:</b> <span>{{ $order->product->price }}
+                                <p class="text-gray-700"><b>Iš viso:</b> <span>{{ $order->meal->price }}
                                         &euro;</span>
                                 </p>
                                 <p
@@ -41,7 +41,7 @@
                             </div>
                             {{-- order body --}}
                             <div class="order-body bg-cyan-500 text-white rounded-br-lg">
-                                <p class="p-5">{{ $order->product->desc }}</p>
+                                <p class="p-5">{{ $order->meal->desc }}</p>
                             </div>
                         </article>
                     @empty

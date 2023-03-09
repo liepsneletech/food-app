@@ -5,26 +5,26 @@
         </h1>
 
         <div class="container flex justify-between border p-7 rounded-xl border-cyan-300">
-            {{-- product info --}}
+            {{-- meal info --}}
             <div class="container">
                 <div class="grid grid-cols-1 lg:grid-cols-[30%_25%_auto] gap-7 p-7 bg-white rounded-xl">
-                    @if (isset($product->img))
-                        <img src="{{ asset($product->img) }}" alt="product photo" class="w-full rounded-xl">
+                    @if (isset($meal->img))
+                        <img src="{{ asset($meal->img) }}" alt="meal photo" class="w-full rounded-xl">
                     @else
-                        <img src="/assets/img/fallback-img.jpg" alt="product photo" class="w-full rounded-xl">
+                        <img src="/assets/img/fallback-img.jpg" alt="meal photo" class="w-full rounded-xl">
                     @endif
                     <div class="p-8 text-cyan-900 font-semibold flex flex-col gap-5">
                         <div class="flex justify-between items-center mb-5">
                             <div>
                                 <p class="text-lg"><i class="fa-solid fa-location-dot w-4"></i>
-                                    {{ $product->provider->title }}</p>
+                                    {{ $meal->provider->title }}</p>
                                 <p class="text-xl"><i class="fa-solid fa-tag w-4"></i>
-                                    &euro; {{ $product->price }}</p>
+                                    &euro; {{ $meal->price }}</p>
                             </div>
                         </div>
                     </div>
 
-                    <form action="{{ route('make-order', $product) }}" method="post">
+                    <form action="{{ route('make-order', $meal) }}" method="post">
                         @csrf
 
                         <div>
@@ -48,7 +48,7 @@
                         <div class="flex align-center justify-between gap-4 flex-nowrap">
                             {{-- back button --}}
                             <div>
-                                <a href="{{ route('products-index') }}" class="gray-btn inline-block">
+                                <a href="{{ route('meals-index') }}" class="gray-btn inline-block">
                                     {{ __('Grįžti') }}
                                 </a>
                             </div>
@@ -66,4 +66,4 @@
 </x-front-layout>
 
 
-{{-- action="{{ route('confirm-order', $product) }}" --}}
+{{-- action="{{ route('confirm-order', $meal) }}" --}}

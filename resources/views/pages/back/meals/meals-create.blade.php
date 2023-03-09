@@ -1,7 +1,7 @@
 <x-back-layout>
     <div class="bg-gray-100 min-h-screen pt-6">
         <div class="container">
-            <form method="POST" action="{{ route('admin-products-store') }}" class="w-1/2 mx-auto"
+            <form method="POST" action="{{ route('admin-meals-store') }}" class="w-1/2 mx-auto"
                 enctype="multipart/form-data">
                 @csrf
 
@@ -14,7 +14,7 @@
                     </p>
                 @endif
 
-                <!-- Error if providers empty -->
+                <!-- Error if restaurants empty -->
                 @if (session()->has('error'))
                     <p class="text-white bg-red-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
                         {{ Session::get('error') }}
@@ -53,19 +53,19 @@
                     </p>
                 @enderror
 
-                <x-form.label for="provider_id" :value="__('Teikėjas')" />
-                <select id="provider_id"
+                <x-form.label for="restaurant_id" :value="__('Restoranas')" />
+                <select id="restaurant_id"
                     class="block w-full border-gray-300 rounded-full focus:border-gray-300 focus:ring
                 focus:ring-cyan-100 placeholder:text-gray-400"
-                    type="text" name="provider_id">
-                    <option selected disabled>-- Teikėjas nepasirinktas</option>
-                    @forelse ($providers as $provider)
-                        <option value="{{ $provider->id }}">{{ $provider->title }}</option>
+                    type="text" name="restaurant_id">
+                    <option selected disabled>-- Restoranas nepasirinktas</option>
+                    @forelse ($restaurants as $restaurant)
+                        <option value="{{ $restaurant->id }}">{{ $restaurant->title }}</option>
                     @empty
                     @endforelse
                 </select>
 
-                @error('provider_id')
+                @error('restaurant_id')
                     <p class="text-white bg-red-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
                         {{ $message }}
                     </p>

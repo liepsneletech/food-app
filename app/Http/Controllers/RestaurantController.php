@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Provider;
+use App\Models\Restaurant;
 
-class ProviderController extends Controller
+class RestaurantController extends Controller
 {
-    public function index(Provider $provider)
+    public function index(Restaurant $restaurant)
     {
-        $providers = Provider::all();
-        return view('pages.back.providers.providers', compact('providers', 'provider'));
+        $restaurants = Restaurant::all();
+        return view('pages.back.restaurants.restaurants', compact('restaurants', 'restaurant'));
     }
 
     function create()
     {
-        return view('pages.back.providers.providers-create');
+        return view('pages.back.restaurants.restaurants-create');
     }
 
     public function store(Request $request)
@@ -35,18 +35,18 @@ class ProviderController extends Controller
             ]
         );
 
-        Provider::create($incomingFields);
+        Restaurant::create($incomingFields);
 
         return redirect()->back()->with('success', 'Pridėjimas sėkmingas.');
     }
 
-    function edit(Provider $provider)
+    function edit(Restaurant $restaurant)
     {
-        $providers = Provider::all();
-        return view('pages.back.providers.providers-edit', compact('provider'));
+        $restaurants = Restaurant::all();
+        return view('pages.back.restaurants.restaurants-edit', compact('restaurant'));
     }
 
-    function update(Request $request, Provider $provider)
+    function update(Request $request, Restaurant $restaurant)
     {
         $incomingFields = $request->validate(
             [
@@ -63,14 +63,14 @@ class ProviderController extends Controller
             ]
         );
 
-        $provider->update($incomingFields);
+        $restaurant->update($incomingFields);
 
         return redirect()->back()->with('success', 'Atnaujinimas sėkmingas.');
     }
 
-    function delete(Provider $provider)
+    function delete(Restaurant $restaurant)
     {
-        $provider->delete();
+        $restaurant->delete();
         return redirect()->back()->with('success', 'Ištrynimas sėkmingas');
     }
 }

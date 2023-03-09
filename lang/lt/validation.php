@@ -184,12 +184,9 @@ return [
         'password' => 'Slaptažodis',
         'name' => 'Vardas',
         'surname' => 'Pavardė',
-        'quote' => 'Citata',
-        'provider_id' => 'Teikėjas',
+        'restaurant_id' => 'Restoranas',
         'img' => 'Nuotrauka',
-        'services[]' => 'Teikiamos paslaugos',
         'price' => 'Kaina',
-        'duration' => 'Trukmė',
     ],
 
 ];

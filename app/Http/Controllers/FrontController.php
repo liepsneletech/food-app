@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Review;
-use App\Models\Product;
-use App\Models\Provider;
+use App\Models\Meal;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,64 +28,64 @@ class FrontController extends Controller
         return view('pages.front.home');
     }
 
-    public function providers(Provider $provider)
+    public function restaurants(Restaurant $restaurant)
     {
-        $providers = Provider::all();
-        return view('pages.front.providers', compact('providers', 'provider'));
+        $restaurants = Restaurant::all();
+        return view('pages.front.restaurants', compact('restaurants', 'restaurant'));
     }
 
-    public function products(Request $request, product $product, Provider $provider)
+    public function meals(Request $request, Meal $meal, Restaurant $restaurant)
     {
         if (!$request->s) {
             if ($request->provider_id && $request->provider_id != 'Pasirinkite teikėją') {
-                $products = Product::where('provider_id', $request->provider_id)->get();
+                $meals = Meal::where('restaurant_id', $request->restaurant_id)->get();
             } else {
-                $products = Product::where('provider_id', '>', '0')->get();
+                $meals = Meal::where('restaurant_id', '>', '0')->get();
             }
 
-            $products = match ($request->sort ?? '') {
-                'asc_price' => $products->sortBy('price'),
-                'dsc_price' => $products->sortByDesc('price'),
-                default => $products,
+            $meals = match ($request->sort ?? '') {
+                'asc_price' => $meals->sortBy('price'),
+                'dsc_price' => $meals->sortByDesc('price'),
+                default => $meals,
             };
         } else {
-            $products = Product::search($request->s)->get();
+            $meals = Meal::search($request->s)->get();
         }
 
-        $sortSelect = Product::SORT;
-        $sortShow = isset(Product::SORT[$request->sort]) ? $request->sort : '';
+        $sortSelect = Meal::SORT;
+        $sortShow = isset(Meal::SORT[$request->sort]) ? $request->sort : '';
 
-        $providers = Provider::all();
-        $providerShow = $request->provider_id ? $request->provider_id : '';
+        $restaurants = Restaurant::all();
+        $restaurantshow = $request->restaurant_id ? $request->restaurant_id : '';
 
         $searchTerm = $request->s;
 
-        return view('pages.front.products', compact('product', 'products', 'provider', 'providers', 'providerShow', 'sortSelect', 'sortShow', 'searchTerm'));
+        return view('pages.front.meals', compact('meal', 'meals', 'restaurant', 'restaurants', 'restaurantshow', 'sortSelect', 'sortShow', 'searchTerm'));
     }
 
     public function search($searchTerm)
     {
-        $products = Product::search($searchTerm)->get();
-        return $products;
+        $meals = Meal::search($searchTerm)->get();
+        return $meals;
     }
 
-    public function singleProduct(Product $product, Provider $provider)
+    public function singleMeal(Meal $meal, Restaurant $restaurant)
     {
-        $providers = Provider::all();
-        $products = Product::all();
+        $restaurants = Restaurant::all();
+        $meals = Meal::all();
 
-        return view('pages.front.single-product', compact('product', 'products', 'provider', 'providers'));
+        return view('pages.front.single-meal', compact('meal', 'meals', 'restaurant', 'restaurants'));
     }
 
-    public function checkout(Product $product, Provider $provider)
+    public function checkout(Meal $meal, Restaurant $restaurant)
     {
-        $products = Product::all();
-        $providers = Provider::all();
+        $meals = Meal::all();
+        $restaurants = Restaurant::all();
 
-        return view('pages.front.checkout', compact('product', 'products', 'provider', 'providers'));
+        return view('pages.front.checkout', compact('meal', 'meals', 'restaurant', 'restaurants'));
     }
 
-    public function makeOrder(Request $request, Order $order, Product $product)
+    public function makeOrder(Request $request, Order $order, Meal $meal)
     {
         $incomingFields = $request->validate([
             'name' => ['required'],
@@ -101,7 +101,7 @@ class FrontController extends Controller
         $order->surname = $request->surname;
         $order->email = $request->email;
         $incomingFields['user_id'] = Auth::user()->id;
-        $incomingFields['product_id'] = $product->id;
+        $incomingFields['meal_id'] = $meal->id;
 
         Order::create($incomingFields);
 
@@ -122,7 +122,7 @@ class FrontController extends Controller
         return view('pages.front.orders', compact('orders', 'user_id'));
     }
 
-    public function makeReview(Request $request, Product $product, Review $review)
+    public function makeReview(Request $request, Meal $meal, Review $review)
     {
         $incomingFields = $request->validate([
             'reviewer' => ['required'],
@@ -135,8 +135,7 @@ class FrontController extends Controller
         $review->reviewer = $request->reviewer;
         $review->rate = $request->rate;
         $review->review_text = $request->review_text;
-        $incomingFields['product_id'] = $product->id;
-        // $incomingFields['user_id'] = Auth::user()->id;
+        $incomingFields['meal_id'] = $meal->id;
 
         Review::create($incomingFields);
 

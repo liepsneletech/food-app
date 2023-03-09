@@ -15,7 +15,7 @@
                             <a href="{{ route('user-orders') }}" class="primary-btn py-1.5">
                                 {{ __('Mano užsakymai') }}
                             </a>
-                            <a href="{{ route('products-index') }}" class="secondary-btn">
+                            <a href="{{ route('meals-index') }}" class="secondary-btn">
                                 {{ __('Grįžti į produktus') }}
                             </a>
                         </div>

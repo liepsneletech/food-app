@@ -8,7 +8,7 @@
                         class="primary-heading justify-self-start lg:justify-self-center col-start-1 col-end-2 row-start-1 row-end-2">
                         Produktai
                     </h1>
-                    <a href="{{ route('admin-products-create', $product) }}"
+                    <a href="{{ route('admin-meals-create', $meal) }}"
                         class="primary-btn text-sm uppercase flex justify-center items-center gap-1 justify-self-end col-start-1 col-end-2 row-start-1 row-end-2">
                         <i class="fa-regular fa-square-plus"></i>
                         <span class="pt-1">Pridėti</span>
@@ -22,26 +22,26 @@
                     </p>
                 @endif
 
-                @forelse ($products as $product)
+                @forelse ($meals as $meal)
                     <div
                         class="grid grid-cols-1 lg:grid-cols-5 items-center justify-between gap-5 border-l-8 border-cyan-600 bg-white px-6 py-3.5 rounded-lg">
-                        <p>{{ $product->title }}</p>
-                        <p>&euro;{{ $product->price }}</p>
-                        @if (isset($product->img))
-                            <img src="{{ asset($product->img) }}" alt="product photo" class="w-[200px] rounded-xl">
+                        <p>{{ $meal->title }}</p>
+                        <p>&euro;{{ $meal->price }}</p>
+                        @if (isset($meal->img))
+                            <img src="{{ asset($meal->img) }}" alt="meal photo" class="w-[200px] rounded-xl">
                         @else
-                            <img src="/assets/img/fallback-img.jpg" alt="product photo" class="w-[200px] rounded-xl">
+                            <img src="/assets/img/fallback-img.jpg" alt="meal photo" class="w-[200px] rounded-xl">
                         @endif
 
-                        <p class="font-bold">Teikėjas: {{ $product->provider->title }}</p>
+                        <p class="font-bold">Restoranas: {{ $meal->provider->title }}</p>
 
                         <div class="flex gap-3 justify-self-end">
-                            <a href="{{ route('admin-products-edit', $product) }}">
+                            <a href="{{ route('admin-meals-edit', $meal) }}">
                                 <button type="submit" class="secondary-btn text-sm py-2">
                                     <i class="fa-solid fa-pen"></i>
                                 </button>
                             </a>
-                            <form action="{{ route('admin-products-delete', $product) }}" method="post">
+                            <form action="{{ route('admin-meals-delete', $meal) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="gray-btn py-2 text-sm">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 @empty
-                    <p>Nepridėtas nė vienas produktas.</p>
+                    <p>Nepridėtas nė vienas patiekalas.</p>
                 @endforelse
             </div>
         </div>
