@@ -1,0 +1,124 @@
+@import "/node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "perfect-scrollbar/css/perfect-scrollbar.css";
+@import "tailwindcss/utilities";
+
+/* fonts */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800);
+@import url(https://fonts.googleapis.com/css?family=Merriweather:300,regular,700,900);
+@import url(https://fonts.googleapis.com/css?family=Yeseva+One:regular);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:100,200,300,regular,500,600,700);
+
+/* basic */
+html {
+    scroll-behavior: smooth;
+}
+
+/* works on firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #258ca1 #41a5b4;
+}
+
+/* works on chrome, edge, and safari */
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #41a5b4;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #258ca1;
+}
+
+/* tailwind */
+
+@layer base {
+    section {
+        @apply py-16 px-6;
+    }
+
+    select {
+        @apply rounded-full border-0;
+    }
+}
+
+@layer components {
+    .primary-heading {
+        @apply font-['Yeseva_One'] text-cyan-800 text-[32px];
+    }
+
+    .primary-btn {
+        @apply text-lg text-white bg-[#fca30b] hover:bg-amber-500 rounded-full px-7 py-2 font-['Josefin_Sans'] shadow-md;
+    }
+
+    .secondary-btn {
+        @apply text-lg text-white bg-[#30b2c7] hover:bg-[#2ea5b8] rounded-full px-7 py-1.5 font-['Josefin_Sans'] shadow-md;
+    }
+
+    .gray-btn {
+        @apply text-lg text-white bg-gray-500 hover:bg-[#606672] rounded-full px-7 py-1.5 font-['Josefin_Sans'] shadow-md;
+    }
+
+    .without-ring {
+        @apply focus:ring-0 focus:ring-offset-0;
+    }
+}
+
+/* accordion */
+
+.order-body {
+    max-height: 0;
+    min-height: 0;
+    transition: all 0.2s;
+}
+
+.show .order-body {
+    min-height: 150px;
+    transition: all 0.3s;
+}
+
+.show .single-offer {
+    display: block;
+}
+
+.single-offer {
+    display: none;
+}
+
+.show .plus-icon {
+    display: none;
+}
+
+.show .minus-icon {
+    display: inline;
+}
+
+.minus-icon {
+    display: none;
+}
+
+.order-approved,
+.order-not-approved,
+.order-canceled {
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 15px;
+}
+
+.order-approved {
+    background: #f59e0b;
+    padding: 3px 19px;
+}
+
+.order-not-approved {
+    background: #06b6d4;
+}
+
+.order-canceled {
+    background: #969696;
+    padding: 3px 23px;
+}
