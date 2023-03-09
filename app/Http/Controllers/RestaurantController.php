@@ -23,18 +23,21 @@ class RestaurantController extends Controller
         $incomingFields = $request->validate(
             [
                 'title' => ['required'],
+                'code' => ['required'],
                 'address' => ['required'],
-                'tel' => ['required'],
                 'desc' => ['required'],
+                'menu_id' => ['required'],
             ],
             [
                 'title.required' => 'Pavadinimo laukelis privalomas',
-                'address.required' => 'Adreso laukelis privalomas',
-                'tel.required' => 'Telefono numerio laukelis privalomas',
+                'code.required' => 'Kodo laukelis privalomas',
+                'address.required' => 'Adreso numerio laukelis privalomas',
                 'desc.required' => 'Aprašymo laukelis privalomas',
+                'menu_id.required' => 'Būtina pasirinkti valgiaraštį',
             ]
         );
 
+        $incomingFields['menu_id'] = 1;
         Restaurant::create($incomingFields);
 
         return redirect()->back()->with('success', 'Pridėjimas sėkmingas.');
@@ -51,21 +54,24 @@ class RestaurantController extends Controller
         $incomingFields = $request->validate(
             [
                 'title' => ['required'],
+                'code' => ['required'],
                 'address' => ['required'],
-                'tel' => ['required'],
                 'desc' => ['required'],
+                'menu_id' => ['required'],
             ],
             [
                 'title.required' => 'Pavadinimo laukelis privalomas',
-                'address.required' => 'Adreso laukelis privalomas',
-                'tel.required' => 'Telefono numerio laukelis privalomas',
+                'code.required' => 'Kodo laukelis privalomas',
+                'address.required' => 'Adreso numerio laukelis privalomas',
                 'desc.required' => 'Aprašymo laukelis privalomas',
+                'menu_id.required' => 'Būtina pasirinkti valgiaraštį',
             ]
         );
 
+        $incomingFields['menu_id'] = 1;
         $restaurant->update($incomingFields);
 
-        return redirect()->back()->with('success', 'Atnaujinimas sėkmingas.');
+        return redirect()->back()->with('success', 'Pridėjimas sėkmingas.');
     }
 
     function delete(Restaurant $restaurant)

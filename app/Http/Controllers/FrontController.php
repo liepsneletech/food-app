@@ -37,7 +37,7 @@ class FrontController extends Controller
     public function meals(Request $request, Meal $meal, Restaurant $restaurant)
     {
         if (!$request->s) {
-            if ($request->provider_id && $request->provider_id != 'Pasirinkite teikėją') {
+            if ($request->provider_id && $request->provider_id != 'Pasirinkite restoraną') {
                 $meals = Meal::where('restaurant_id', $request->restaurant_id)->get();
             } else {
                 $meals = Meal::where('restaurant_id', '>', '0')->get();

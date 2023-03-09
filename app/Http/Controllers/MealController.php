@@ -39,7 +39,7 @@ class MealController extends Controller
         ], [
             'title.required' => 'Pavadinimo laukelis yra privalomas',
             'desc.required' => 'Aprašymo laukelis yra privalomas',
-            'provider_id.required' => 'Teikėjo laukelis yra privalomas',
+            'provider_id.required' => 'Restorano laukelis yra privalomas',
             'img.image' => 'Netinkamas nuotraukos formatas',
             'img.max' => 'Nuotraukos dydis viršija 3MB.',
             'price.required' => 'Kainos laukelis yra būtinas.',

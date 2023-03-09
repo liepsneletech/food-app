@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title', 50);
             $table->text('desc', 150);
             $table->string('address', 40);
-            $table->string('img', 200)->nullable();
             $table->string('code', 9);
             $table->timestamps();
         });

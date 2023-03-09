@@ -14,7 +14,7 @@
                     </p>
                 @endif
 
-                <x-form.label for="title" :value="__('Teikėjo pavadinimas')" />
+                <x-form.label for="title" :value="__('Restorano pavadinimas')" />
                 <x-form.input id="title" class="block mt-1 w-full mb-2" type="text" name="title"
                     value='{{ $restaurant->title }}' autofocus />
 

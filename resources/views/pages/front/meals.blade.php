@@ -12,7 +12,7 @@
                 <select name="provider_id" id="provider_id"
                     class=" border-0 rounded-full focus:border-cyan-300 focus:ring
                 focus:ring-cyan-100 placeholder:text-gray-400 text-gray-500 mr-2">
-                    <option selected disabled value="Pasirinkite šalį">Pasirinkite teikėją</option>
+                    <option selected disabled value="Pasirinkite šalį">Pasirinkite restoraną</option>
                     @foreach ($restaurants as $provider)
                         <option value="{{ $provider->id }}" @if ($provider->id == $restaurantshow) selected @endif>
                             {{ $provider->title }}</option>

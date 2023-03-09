@@ -6,7 +6,7 @@
                 @csrf
                 @method('put')
 
-                <h1 class="primary-heading mb-6">Produkto redagavimas</h1>
+                <h1 class="primary-heading mb-6">patiekalo redagavimas</h1>
 
                 <!-- Success message -->
                 @if (session()->has('success'))

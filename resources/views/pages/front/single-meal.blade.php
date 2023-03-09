@@ -54,7 +54,7 @@
         {{-- restaurant info --}}
         <div class="bg-cyan-900">
             <div class="container text-white pb-28">
-                <h2 class="primary-heading text-center pt-20 pb-10 text-white">Apie teikėją</h2>
+                <h2 class="primary-heading text-center pt-20 pb-10 text-white">Apie restoraną</h2>
                 <p>{{ $meal->restaurant->desc }}</p>
             </div>
         </div>

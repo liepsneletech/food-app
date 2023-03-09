@@ -23,7 +23,7 @@
                     class="dropdown-content bg-cyan-800 text-white text-sm absolute top-7 w-[160px] p-4 rounded-xl shadow-md z-10">
                     <li><a href="{{ route('meals-index') }}"
                             class="inline-block mb-2 border-b-2 border-transparent hover:border-b-2 hover:border-cyan-500">Užsakyti
-                            produktą</a>
+                            patiekalą</a>
                     </li>
                     <li><a href="{{ route('meals-index') }}"
                             class="inline-block mb-2 border-b-2 border-transparent hover:border-b-2 hover:border-cyan-500">Produktų

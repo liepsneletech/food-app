@@ -13,9 +13,19 @@
                     </p>
                 @endif
 
-                <x-form.label for="title" :value="__('Restoranas')" />
+                <x-form.label for="title" :value="__('Restorano pavadinimas')" />
                 <x-form.input id="title" class="block mt-1 w-full mb-2" type="text" name="title"
                     :value="old('title')" autofocus />
+
+                @error('title')
+                    <p class="text-white bg-red-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+                <x-form.label for="code" :value="__('Įmonės kodas')" />
+                <x-form.input id="code" class="block mt-1 w-full mb-2" type="text" name="code"
+                    :value="old('code')" />
 
                 @error('title')
                     <p class="text-white bg-red-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
@@ -33,20 +43,10 @@
                     </p>
                 @enderror
 
-                <x-form.label for="tel" :value="__('Telefono numeris')" />
-                <x-form.input id="tel" class="block mt-1 w-full mb-2" type="text" name="tel"
-                    :value="old('tel')" />
-
-                @error('tel')
-                    <p class="text-white bg-red-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
-                        {{ $message }}
-                    </p>
-                @enderror
-
                 <x-form.label for="desc" :value="__('Aprašymas')" class="mt-3" />
                 <textarea name="desc" id="desc" rows="3"
                     class="w-full rounded-2xl py-2 border-gray-300 focus:border-gray-300 focus:ring
-                    focus:ring-cyan-100 placeholder:text-gray-400"></textarea>
+                    focus:ring-cyan-100 placeholder:text-gray-400">{{ "old('desc')" }}</textarea>
 
                 @error('desc')
                     <p class="text-white bg-red-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
