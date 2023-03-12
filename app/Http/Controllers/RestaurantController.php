@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Meal;
 use App\Models\Menu;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
@@ -61,11 +62,11 @@ class RestaurantController extends Controller
         return redirect()->back()->with('success', 'Pridėjimas sėkmingas.');
     }
 
-    function edit(Restaurant $restaurant)
+    function edit(Restaurant $restaurant, Meal $meal)
     {
         $restaurants = Restaurant::all();
         $menus = Menu::all();
-        return view('pages.back.restaurants.restaurants-edit', compact('restaurant', 'menus'));
+        return view('pages.back.restaurants.restaurants-edit', compact('restaurant', 'menus', 'meal'));
     }
 
     function update(Request $request, Restaurant $restaurant)

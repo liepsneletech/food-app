@@ -41,7 +41,7 @@
                             </div>
                             {{-- order body --}}
                             <div class="order-body bg-cyan-500 text-white rounded-br-lg">
-                                <p class="p-5">{{ $order->meal->desc }}</p>
+                                <p class="p-5 order-text">{{ $order->meal->desc }}</p>
                             </div>
                         </article>
                     @empty

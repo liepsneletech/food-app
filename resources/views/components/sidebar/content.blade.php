@@ -12,15 +12,15 @@
         </x-slot>
     </x-sidebar.link>
 
-    <x-sidebar.link title="Valgiaraščiai" href="{{ route('admin-menus-index') }}" :isActive="request()->routeIs('admin-menus-index')">
+    <x-sidebar.link title="Virtuvės" href="{{ route('admin-menus-index') }}" :isActive="request()->routeIs('admin-menus-index')">
         <x-slot name="icon">
-            <i class="fa-solid fa-building-columns text-center w-6" aria-hidden='true'></i>
+            <i class="fa-solid fa-fire-flame-curved text-center w-6" aria-hidden='true'></i>
         </x-slot>
     </x-sidebar.link>
 
     <x-sidebar.link title="Patiekalai" href="{{ route('admin-meals-index') }}" :isActive="request()->routeIs('admin-meals-index')">
         <x-slot name="icon">
-            <i class="fa-solid fa-circle-nodes text-center w-6" aria-hidden='true'></i>
+            <i class="fa-solid fa-bowl-rice text-center w-6" aria-hidden='true'></i>
         </x-slot>
     </x-sidebar.link>
 

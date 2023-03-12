@@ -24,7 +24,7 @@
             $variantClasses = 'bg-white text-gray-500 hover:bg-gray-100';
             break;
         default:
-            $variantClasses = 'bg-gray-200 text-gray-500 hover:bg-gray-500';
+            $variantClasses = 'bg-gray-200 text-gray-500 hover:bg-gray-500 hover:text-white';
     }
     
     switch ($size) {

@@ -28,13 +28,8 @@
                                     <div class="grid gap-2 justify-center items-start text-cyan-900">
                                         <p><i class="fa-solid fa-location-dot w-5"></i>
                                             {{ $restaurant->address }}</p>
-                                        <p><i class="fa-solid fa-phone w-5"></i>
-                                            {{ $restaurant->tel }}</p>
-                                        <p><i class="fa-solid fa-clock w-5"></i>
-                                            Darbo valandos</p>
                                         </p>
-                                        <a href="#"
-                                            class="primary-btn self-end justify-self-start py-1.5">Produktai</a>
+                                        <p>Virtuvė: {{ $restaurant->menu->title }}</p>
                                     </div>
                                 </div>
                             </div>

@@ -6,23 +6,23 @@
         <div class="container">
             <div class=" flex flex-col items-end gap-4">
                 <h1 class="primary-heading text-right">Atrask naujus skonius!</h1>
-                <p class="font-['Josefin_Sans'] text-white lg:w-1/2 text-right mb-4">Curabitur aliquet quam amet,
+                <p class="font-['Josefin_Sans'] lg:w-[40%] text-right mb-4 text-cyan-900">Curabitur aliquet quam amet,
                     consectetur
                     adipiscing elit lorem ut libero malesuada luctus et ultrices posuere cubilia feugiat adipiscing elit
                     ac diam sit amet.</p>
-                <button class="primary-btn">Paslaugos</button>
+                <a href="{{ route('restaurants-index') }}" class="primary-btn">Restoranai</a>
             </div>
-
             <a href="#meals"
                 class="text-3xl opacity-85 text-cyan-800 absolute right-[50%] translate-x-1/2 bottom-8 animate-pulse"><i
                     class="fa-solid fa-angles-down"></i></a>
         </div>
     </section>
 
-    {{-- meals section --}}
-    <section class="meals container" id="meals">
-        <h2 class="primary-heading text-center">Paslaugos</h2>
+    {{-- products section --}}
+    <section class="products container" id="products">
+        <h2 class="primary-heading text-center">Populiariausi patiekalai</h2>
     </section>
+
 
     {{-- slider section --}}
     <section class="slider-section relative p-0">
@@ -87,12 +87,4 @@
             </div>
         </div>
     </section>
-
-    {{-- contact us section --}}
-    {{-- <section class="items bg-gray-100" id="contacts">
-        <div class="container">
-            <h2 class="primary-heading text-center">Susisiekite</h2>
-        </div class="container">
-    </section> --}}
-
 </x-front-layout>

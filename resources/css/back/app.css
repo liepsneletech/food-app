@@ -68,7 +68,7 @@ html {
     }
 }
 
-/* accordion */
+/* order accordion */
 
 .order-body {
     max-height: 0;
@@ -81,11 +81,11 @@ html {
     transition: all 0.3s;
 }
 
-.show .single-offer {
+.show .order-text {
     display: block;
 }
 
-.single-offer {
+.order-text {
     display: none;
 }
 

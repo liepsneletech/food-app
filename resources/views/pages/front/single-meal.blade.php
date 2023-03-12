@@ -24,8 +24,6 @@
                             <p class="text-xl"><i class="fa-solid fa-tag w-4"></i>
                                 &euro; {{ $meal->price }}</p>
                         </div>
-                        <p class="text-3xl flex items-center gap-1"><i class="fa-solid fa-star text-xl pb-1"></i> 4.5
-                        </p>
                     </div>
 
                     {{-- checkout button --}}

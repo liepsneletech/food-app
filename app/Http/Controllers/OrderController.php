@@ -40,6 +40,6 @@ class OrderController extends Controller
       return redirect()->back()->with('not', 'Jūs negalite ištrinti nebaigto užsakymo.');
     }
     $order->delete();
-    return redirect()->back();
+    return redirect()->back()->with('success', 'Sėkmingai ištrynėte užsakymą.');
   }
 }

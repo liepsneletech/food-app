@@ -84,94 +84,12 @@ Alpine.start();
 
 // CUSTOM CODE STARTS HERE
 
-// navbar
-const navToggle = document.querySelector(".nav-toggle");
-const navLinks = document.querySelector(".nav-links");
+import navbar from "./components/navbar";
+import orderAccordion from "./components/order-accordion";
+import cardAccordion from "./components/card-accordion";
+import slider from "./components/slider";
 
-navToggle.addEventListener("click", function () {
-    navLinks.classList.toggle("show-links");
-    navToggle.classList.toggle("nav-toggle-rotate");
-});
-
-window.addEventListener("resize", function () {
-    navLinks.classList.remove("show-links");
-    navToggle.classList.remove("nav-toggle-rotate");
-});
-
-// navbar dropdown
-const dropdownTrigger = document.querySelector(".dropdown-trigger");
-const dropdownContent = document.querySelector(".dropdown-content");
-
-dropdownTrigger.addEventListener("mouseover", function () {
-    dropdownContent.classList.add("show");
-});
-
-dropdownTrigger.addEventListener("mouseleave", function () {
-    dropdownContent.classList.remove("show");
-});
-
-dropdownContent.addEventListener("mouseleave", function () {
-    dropdownContent.classList.remove("show");
-});
-
-// order accordion
-const orders = document.querySelectorAll(".order");
-
-orders.forEach((order) => {
-    const btn = order.querySelector(".order-btn");
-    btn.addEventListener("click", () => {
-        orders.forEach((item) => {
-            if (item !== order) {
-                item.classList.remove("show");
-            }
-        });
-        order.classList.toggle("show");
-    });
-});
-
-// slider
-const slides = document.querySelectorAll(".slide");
-const prevBtn = document.querySelector(".prevBtn");
-const nextBtn = document.querySelector(".nextBtn");
-
-slides.forEach(function (slide, index) {
-    slide.style.left = `${index * 100}%`;
-});
-
-let counter = 0;
-nextBtn.addEventListener("click", function () {
-    counter++;
-    carousel();
-});
-prevBtn.addEventListener("click", function () {
-    counter--;
-    carousel();
-});
-
-function carousel() {
-    if (counter === slides.length) {
-        counter = 0;
-    }
-    if (counter < 0) {
-        counter = slides.length - 1;
-    }
-
-    slides.forEach(function (slide) {
-        slide.style.transform = `translateX(-${counter * 100}%)`;
-    });
-}
-
-// accordion
-const cards = document.querySelectorAll(".card");
-
-cards.forEach((card) => {
-    const btn = card.querySelector(".accordion-btn");
-    btn.addEventListener("click", () => {
-        cards.forEach((item) => {
-            if (item !== card) {
-                item.classList.remove("show");
-            }
-        });
-        card.classList.toggle("show");
-    });
-});
+slider();
+cardAccordion();
+navbar();
+orderAccordion();

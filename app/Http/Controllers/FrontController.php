@@ -37,7 +37,7 @@ class FrontController extends Controller
     public function meals(Request $request, Meal $meal, Restaurant $restaurant)
     {
         if (!$request->s) {
-            if ($request->provider_id && $request->provider_id != 'Pasirinkite restoraną') {
+            if ($request->provider_id && $request->provider_id != 'Pasirinkite teikėją') {
                 $meals = Meal::where('restaurant_id', $request->restaurant_id)->get();
             } else {
                 $meals = Meal::where('restaurant_id', '>', '0')->get();
@@ -120,25 +120,5 @@ class FrontController extends Controller
         $orders = Order::where('user_id', '=', $user_id)->get();
 
         return view('pages.front.orders', compact('orders', 'user_id'));
-    }
-
-    public function makeReview(Request $request, Meal $meal, Review $review)
-    {
-        $incomingFields = $request->validate([
-            'reviewer' => ['required'],
-            'rate' => ['required'],
-        ], [
-            'reviewer.required' => 'Vardo laukelis yra privalomas',
-            'rate.required' => 'Įvertinimo laukelis yra privalomas',
-        ]);
-
-        $review->reviewer = $request->reviewer;
-        $review->rate = $request->rate;
-        $review->review_text = $request->review_text;
-        $incomingFields['meal_id'] = $meal->id;
-
-        Review::create($incomingFields);
-
-        return redirect()->route('make-review');
     }
 }

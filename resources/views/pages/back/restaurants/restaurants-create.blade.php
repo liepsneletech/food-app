@@ -44,12 +44,12 @@
                     </p>
                 @enderror
 
-                <x-form.label for="menu_id" :value="__('Restoranas')" />
+                <x-form.label for="menu_id" :value="__('Virtuvė')" />
                 <select id="menu_id"
                     class="block w-full border-gray-300 rounded-full focus:border-gray-300 focus:ring
                 focus:ring-cyan-100 placeholder:text-gray-400"
                     type="text" name="menu_id">
-                    <option selected disabled>-- Valgiaraštis nepasirinktas</option>
+                    <option selected disabled>-- Virtuvė nepasirinkta</option>
                     @forelse ($menus as $menu)
                         <option value="{{ $menu->id }}">{{ $menu->title }}</option>
                     @empty

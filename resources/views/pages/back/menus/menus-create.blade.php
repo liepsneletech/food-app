@@ -4,7 +4,7 @@
             <form method="POST" action="{{ route('admin-menus-store') }}" class="w-1/2 mx-auto">
                 @csrf
 
-                <h1 class="primary-heading mb-6 mt-24">Valgiaraščio pridėjimas</h1>
+                <h1 class="primary-heading mb-6 mt-24">Virtuvės pridėjimas</h1>
 
                 <!-- Success messages -->
                 @if (session()->has('success'))
@@ -13,7 +13,7 @@
                     </p>
                 @endif
 
-                <x-form.label for="title" :value="__('Valgiaraščio pavadinimas')" />
+                <x-form.label for="title" :value="__('Virtuvės pavadinimas')" />
                 <x-form.input id="title" class="block mt-1 w-full mb-2" type="text" name="title"
                     :value="old('title')" autofocus />
 

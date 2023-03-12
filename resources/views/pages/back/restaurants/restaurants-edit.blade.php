@@ -45,18 +45,20 @@
                     </p>
                 @enderror
 
-                <x-form.label for="menu_id" :value="__('Restoranas')" />
+                <x-form.label for="menu_id" :value="__('Virtuvė')" />
                 <select id="menu_id"
                     class="block w-full border-gray-300 rounded-full focus:border-gray-300 focus:ring
                 focus:ring-cyan-100 placeholder:text-gray-400"
                     type="text" name="menu_id">
-                    <option selected disabled>-- Valgiaraštis nepasirinktas</option>
+                    <option selected disabled>-- Virtuvė nepasirinkta</option>
                     @forelse ($menus as $menu)
-                        <option value="{{ $menu->id }}" @if ($menu->id === $meal->menu_id) selected @endif>
+                        <option value="{{ $menu->id }}" @if ($menu->id === $restaurant->menu_id) selected @endif>
                             {{ $menu->title }}</option>
                     @empty
                     @endforelse
                 </select>
+
+
 
                 <x-form.label for="desc" :value="__('Aprašymas')" class="mt-3" />
                 <textarea name="desc" id="desc" rows="3"

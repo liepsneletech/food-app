@@ -6,7 +6,7 @@
                 <div class="grid grid-cols-1 items-center mb-6">
                     <h1
                         class="primary-heading justify-self-start lg:justify-self-center col-start-1 col-end-2 row-start-1 row-end-2">
-                        Valgiaraščiai
+                        Virtuvės
                     </h1>
                     <a href="{{ route('admin-menus-create') }}"
                         class="primary-btn text-sm uppercase flex justify-center items-center gap-1 justify-self-end col-start-1 col-end-2 row-start-1 row-end-2">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 @empty
-                    <p>Nepridėtas nė vienas valgiaraštis.</p>
+                    <p>Nepridėta nė viena virtuvė.</p>
                 @endforelse
             </div>
         </div>

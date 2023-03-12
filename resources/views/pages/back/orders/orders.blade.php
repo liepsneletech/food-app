@@ -4,6 +4,20 @@
             <h1 class="primary-heading pb-7 text-center ">
                 Visi užsakymai
             </h1>
+
+            <!-- Success message -->
+            @if (session()->has('success'))
+                <p class="text-white bg-green-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
+                    {{ Session::get('success') }}
+                </p>
+            @endif
+            <!-- Error message -->
+            @if (session()->has('not'))
+                <p class="text-white bg-red-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
+                    {{ Session::get('not') }}
+                </p>
+            @endif
+
             <div class="grid gap-6">
                 @forelse ($orders as $order)
                     {{-- single order --}}
@@ -57,7 +71,7 @@
                         </div>
                         {{-- order body --}}
                         <div class="order-body bg-cyan-500 text-white rounded-br-lg">
-                            <p class="p-5">{{ $order->meal->desc }}</p>
+                            <p class="p-5 order-text">{{ $order->meal->desc }}</p>
                         </div>
                     </article>
                 @empty
