@@ -16,11 +16,11 @@
             <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Pradžia') }}
             </x-nav-link>
+            <x-nav-link :href="route('meals-index')" :active="request()->routeIs('meals-index')">
+                {{ __('Patiekalai') }}
+            </x-nav-link>
             <x-nav-link :href="route('restaurants-index')" :active="request()->routeIs('restaurants-index')">
                 {{ __('Restoranai') }}
-            </x-nav-link>
-            <x-nav-link :href="route('meals-index')" :active="request()->routeIs('meals-index')">
-                {{ __('Visi patiekalai') }}
             </x-nav-link>
             <x-nav-link href="/#about" :active="request()->routeIs('/#about')">
                 {{ __('Apie mus') }}

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Meal;
 use App\Models\User;
 use App\Models\Order;
-use App\Models\Review;
-use App\Models\Meal;
+use App\Jobs\SendNewEmail;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class FrontController extends Controller
@@ -23,9 +24,18 @@ class FrontController extends Controller
         return redirect()->route('home');
     }
 
-    public function home()
+    public function home(Meal $meal)
     {
-        return view('pages.front.home');
+        $restaurants = Restaurant::all();
+
+        $popularMeals = DB::table('orders')
+            ->join('meals', 'meals.id', '=', 'orders.meal_id')
+            ->groupBy('meal_id')
+            ->orderBy('meal_id', 'desc')
+            ->take(3)
+            ->get();
+
+        return view('pages.front.home', compact('popularMeals', 'restaurants'));
     }
 
     public function restaurants(Restaurant $restaurant)
@@ -37,7 +47,7 @@ class FrontController extends Controller
     public function meals(Request $request, Meal $meal, Restaurant $restaurant)
     {
         if (!$request->s) {
-            if ($request->provider_id && $request->provider_id != 'Pasirinkite teikėją') {
+            if ($request->restaurant_id && $request->restaurant_id != 'Pasirinkite restoraną') {
                 $meals = Meal::where('restaurant_id', $request->restaurant_id)->get();
             } else {
                 $meals = Meal::where('restaurant_id', '>', '0')->get();
@@ -120,5 +130,22 @@ class FrontController extends Controller
         $orders = Order::where('user_id', '=', $user_id)->get();
 
         return view('pages.front.orders', compact('orders', 'user_id'));
+    }
+
+    public function sendEmail(Request $request)
+    {
+        $incomingFields = $request->validate([
+            'name' => ['required'],
+            'email' => ['required'],
+            'desc' => ['required'],
+        ], [
+            'name.required' => 'Vardo laukelis yra privalomas',
+            'email.required' => 'El. pašto laukelis yra privalomas',
+            'desc.required' => 'Žinutės laukelis yra privalomas',
+        ]);
+
+        dispatch(new SendNewEmail(['sendTo' => 'contact@meals.com', 'name' => $incomingFields['name'], 'email' => $incomingFields['email'], 'desc' => $incomingFields['desc']]));
+
+        return redirect('#contacts')->with('success', 'Ačiū už Jūsų žinutę. Greitu metu susisieksime.');
     }
 }

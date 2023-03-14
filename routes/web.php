@@ -30,6 +30,8 @@ Route::post('/make-order/{meal}', [FrontController::class, 'makeOrder'])->name('
 Route::get('/order-success', [FrontController::class, 'orderSuccess'])->name('order-success')->middleware('roles:customer');
 // orders
 Route::get('/orders', [FrontController::class, 'userOrders'])->name('user-orders')->middleware('roles:customer');
+// orders
+Route::post('/home', [FrontController::class, 'sendEmail'])->name('send-email')->middleware('roles:guest|customer');
 
 // BACK ROUTES
 

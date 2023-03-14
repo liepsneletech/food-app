@@ -18,9 +18,46 @@
         </div>
     </section>
 
-    {{-- products section --}}
-    <section class="products container" id="popular-meals">
-        <h2 class="primary-heading text-center">Populiariausi patiekalai</h2>
+    {{-- popular meals section --}}
+    <section class="popular-meals container" id="popular-meals">
+        <h2 class="primary-heading text-center mb-16">Populiariausi patiekalai</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 ">
+            @forelse ($popularMeals as $popularMeal)
+                {{-- meal card --}}
+                <article
+                    class="card rounded-xl flex flex-col justify-between overflow-hidden bg-[#a7d2ca] hover:bg-amber-400 hover:brightness-90 transition-all duration-200 text-white shadow-lg">
+                    {{-- card head --}}
+
+                    @if (isset($popularMeal->img))
+                        <img src="{{ asset($popularMeal->img) }}" alt="meal photo" class="w-full rounded-t-xl">
+                    @else
+                        <img src="/assets/img/fallback-img.jpg" alt="meal photo" class="w-full rounded-t-xl">
+                    @endif
+                    <div class="py-7 pl-7 pr-5 text-cyan-900">
+                        <div>
+                            <p class="text-2xl font-['Yeseva_One'] mb-3">{{ $popularMeal->title }}
+                            </p>
+                            <p><i class="fa-solid fa-tag w-4"></i>
+                                &euro; {{ $popularMeal->price }}</p>
+
+                            <p><i class="fa-solid fa-location-dot w-4"></i>
+                                @foreach ($restaurants as $restaurant)
+                                    @if ($restaurant->id == $popularMeal->restaurant_id)
+                                        {{ $restaurant->title }}
+                                    @endif
+                                @endforeach
+                            </p>
+                        </div>
+                    </div>
+                    {{-- <a href="{{ route('single-meal', $popularMeal) }}"
+                        class="card-btn self-end bg-cyan-900 hover:bg-[#124253] py-3 w-full uppercase text-center cursor-pointer text-white transition-all inline-block">
+                        Peržiūrėti
+                    </a> --}}
+                </article>
+            @empty
+                <p>Nepridėtas nė vienas patiekalas.</p>
+            @endforelse
+        </div>
     </section>
 
 
@@ -91,10 +128,18 @@
     {{-- contact us section --}}
     <section class="items bg-gray-100" id="contacts">
         <div class="container">
-            <h2 class="primary-heading text-center">Susisiekite</h2>
 
-            <form method="post" class="w-1/2 mx-auto">
+            <form method="post" class="w-1/2 mx-auto" action="{{ route('send-email') }}">
                 @csrf
+
+                <h2 class="primary-heading text-center">Susisiekite</h2>
+
+                <!-- Success message -->
+                @if (session()->has('success'))
+                    <p class="text-white bg-green-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
+                        {{ Session::get('success') }}
+                    </p>
+                @endif
 
                 <x-form.label for="name" :value="__('Vardas')" />
                 <x-form.input id="name" class="block mt-1 w-full mb-4 text-gray-500" type="text" name="name"
@@ -116,19 +161,19 @@
                     </p>
                 @enderror
 
-                <x-form.label for="review_text" :value="__('Žinutė:')" class="mt-3" />
-                <textarea name="review_text" id="review_text" rows="3"
+                <x-form.label for="desc" :value="__('Žinutė:')" class="mt-3" />
+                <textarea name="desc" id="desc" rows="3"
                     class="w-full rounded-2xl py-2 border-gray-300 focus:border-gray-300 focus:ring
-                focus:ring-cyan-100 text-gray-500">{{ old('review_text') }}</textarea>
+                focus:ring-cyan-100 text-gray-500">{{ old('desc') }}</textarea>
 
-                @error('review_text')
+                @error('desc')
                     <p class="text-white bg-red-500 rounded-lg py-1 px-4 text-sm mt-3 mb-5">
                         {{ $message }}
                     </p>
                 @enderror
 
                 <button class="mt-4 mb-10 secondary-btn" type="submit">
-                    Nusiųsti
+                    Siųsti
                 </button>
             </form>
         </div>
