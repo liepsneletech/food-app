@@ -28,12 +28,11 @@ class FrontController extends Controller
     {
         $restaurants = Restaurant::all();
 
-        $popularMeals = DB::table('orders')
-            ->join('meals', 'meals.id', '=', 'orders.meal_id')
-            ->groupBy('meal_id')
-            ->orderBy('meal_id', 'desc')
-            ->take(3)
-            ->get();
+        $popularMeals = Meal::withCount('orders as orders_count')
+            ->where('id', '>', 0)
+            ->orderBy('orders_count', 'DESC')
+            ->get()
+            ->take(3);
 
         return view('pages.front.home', compact('popularMeals', 'restaurants'));
     }

@@ -4,7 +4,7 @@ function cardAccordion() {
 
     cards.forEach((card) => {
         const btn = card.querySelector(".accordion-btn");
-        btn.addEventListener("click", () => {
+        btn?.addEventListener("click", () => {
             cards.forEach((item) => {
                 if (item !== card) {
                     item.classList.remove("show");
@@ -13,7 +13,6 @@ function cardAccordion() {
             card.classList.toggle("show");
         });
     });
-    console.log("veikia");
 }
 
 export default cardAccordion;

@@ -2,18 +2,25 @@
 
     {{-- hero section --}}
     <section
-        class="hero bg-[url('/public/assets/img/hero-bg.jpg')] bg-cover bg-no-repeat bg-fixed hero h-[85.5vh] flex items-center relative">
+        class="hero bg-[url('/public/assets/img/hero-bg-mobile.jpg')] md:bg-[url('/public/assets/img/hero-bg.jpg')] bg-cover bg-bottom md:bg-right bg-no-repeat md:bg-fixed h-[96vh] md:h-[85.5vh] flex items-start md:items-center relative">
         <div class="container">
-            <div class=" flex flex-col items-end gap-4">
-                <h1 class="primary-heading text-right">Atrask naujus skonius!</h1>
-                <p class="font-['Josefin_Sans'] lg:w-[40%] text-right mb-4 text-cyan-900">Curabitur aliquet quam amet,
+            <div class=" flex flex-col items-center md:items-end gap-4">
+                <h1
+                    class="primary-heading text-center md:text-right w-full lg:w-[50%] xl:w-full leading-tight text-[35px] lg:text-[44px]">
+                    Atrask naujus skonius!
+                </h1>
+                <p
+                    class="font-['Josefin_Sans'] w-full md:w-[67%] lg:w-[40%] text-center md:text-right mb-4 text-cyan-900">
+                    Curabitur
+                    aliquet quam
+                    amet,
                     consectetur
                     adipiscing elit lorem ut libero malesuada luctus et ultrices posuere cubilia feugiat adipiscing elit
                     ac diam sit amet.</p>
-                <a href="{{ route('restaurants-index') }}" class="primary-btn">Restoranai</a>
+                <a href="{{ route('restaurants-index') }}" class="primary-btn inline-block">Restoranai</a>
             </div>
             <a href="#popular-meals"
-                class="text-3xl opacity-85 text-cyan-800 absolute right-[50%] translate-x-1/2 bottom-8 animate-pulse"><i
+                class="hidden md:block text-3xl opacity-85 text-cyan-800 absolute right-[50%] translate-x-1/2 bottom-8 animate-pulse"><i
                     class="fa-solid fa-angles-down"></i></a>
         </div>
     </section>
@@ -49,10 +56,10 @@
                             </p>
                         </div>
                     </div>
-                    {{-- <a href="{{ route('single-meal', $popularMeal) }}"
+                    <a href="{{ route('single-meal', $popularMeal) }}"
                         class="card-btn self-end bg-cyan-900 hover:bg-[#124253] py-3 w-full uppercase text-center cursor-pointer text-white transition-all inline-block">
                         Peržiūrėti
-                    </a> --}}
+                    </a>
                 </article>
             @empty
                 <p>Nepridėtas nė vienas patiekalas.</p>
@@ -62,26 +69,31 @@
 
 
     {{-- slider section --}}
-    <section class="slider-section relative p-0">
-        <div class="slider-container">
-            <div class="slide">
-                <h3 class="slider-heading">Slide 1</h3>
-                <img src="/assets/img/slide-1.jpg" alt="abstraction image" class="slide-img">
+    <section class="slider-section p-0">
+        <h2 class="primary-heading text-center mb-14 mt-5">Naujausi restoranai</h2>
+        <div class="relative">
+            <div class="slider-container ">
+                <div class="slide">
+                    <h3 class="slider-heading">Slide 1</h3>
+                    <img src="/assets/img/slide-1.jpg" alt="abstraction image" class="slide-img">
+                </div>
+                <div class="slide">
+                    <h3 class="slider-heading">Slide 2</h3>
+                    <img src="/assets/img/slide-2.jpg" alt="abstraction image" class="slide-img">
+                </div>
+                <div class="slide">
+                    <h3 class="slider-heading">Slide 3</h3>
+                    <img src="/assets/img/slide-3.jpg" alt="abstraction image" class="slide-img">
+                </div>
             </div>
-            <div class="slide">
-                <h3 class="slider-heading">Slide 2</h3>
-                <img src="/assets/img/slide-2.jpg" alt="abstraction image" class="slide-img">
+            <div class="btns-container">
+                <button type="button"
+                    class="prevBtn pl-5 text-white text-2xl absolute left-0 top-1/2 -translate-y-1/3"><i
+                        class="fa-solid fa-chevron-left"></i></button>
+                <button type="button"
+                    class="nextBtn pr-5 text-white text-2xl absolute right-0 top-1/2 -translate-y-1/3"><i
+                        class="fa-solid fa-chevron-right"></i></button>
             </div>
-            <div class="slide">
-                <h3 class="slider-heading">Slide 3</h3>
-                <img src="/assets/img/slide-3.jpg" alt="abstraction image" class="slide-img">
-            </div>
-        </div>
-        <div class="btns-container">
-            <button type="button" class="prevBtn pl-5 text-white text-2xl absolute left-0 top-1/2 -translate-y-1/3"><i
-                    class="fa-solid fa-chevron-left"></i></button>
-            <button type="button" class="nextBtn pr-5 text-white text-2xl absolute right-0 top-1/2 -translate-y-1/3"><i
-                    class="fa-solid fa-chevron-right"></i></button>
         </div>
     </section>
 
@@ -129,10 +141,11 @@
     <section class="items bg-gray-100" id="contacts">
         <div class="container">
 
-            <form method="post" class="w-1/2 mx-auto" action="{{ route('send-email') }}">
+            <form method="post" class="w-full sm:w-3/4 lg:w-1/2 mx-auto"
+                action="{{ route('send-email') . '#contacts' }}">
                 @csrf
 
-                <h2 class="primary-heading text-center">Susisiekite</h2>
+                <h2 class="primary-heading text-center mb-4">Susisiekite</h2>
 
                 <!-- Success message -->
                 @if (session()->has('success'))
@@ -142,7 +155,7 @@
                 @endif
 
                 <x-form.label for="name" :value="__('Vardas')" />
-                <x-form.input id="name" class="block mt-1 w-full mb-4 text-gray-500" type="text" name="name"
+                <x-form.input id="name" class="block mt-1 w-full mb-6 text-gray-500" type="text" name="name"
                     :value="old('name')" />
 
                 @error('name')

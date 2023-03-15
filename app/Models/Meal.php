@@ -30,7 +30,7 @@ class Meal extends Model
         return $this->belongsTo(Restaurant::class);
     }
 
-    public function order()
+    public function orders()
     {
         return $this->hasMany(Order::class);
     }

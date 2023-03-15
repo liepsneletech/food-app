@@ -15,8 +15,7 @@
                                 <p class="text-xl font-['Yeseva_One'] text-cyan-900 mb-3">{{ $restaurant->title }}
                                 </p>
                                 <div class="grid grid-cols-1 lg:grid-cols-[55%,_40%] items-start justify-between gap-3 ">
-                                    <div class="grid gap-2 justify-center items-start">
-
+                                    <div>
                                         @if (isset($restaurant->img))
                                             <img src="{{ asset($restaurant->img) }}" alt="meal photo"
                                                 class="w-[300px] rounded-xl">
@@ -25,11 +24,16 @@
                                                 class="w-[300px] rounded-xl">
                                         @endif
                                     </div>
-                                    <div class="grid gap-2 justify-center items-start text-cyan-900">
-                                        <p><i class="fa-solid fa-location-dot w-5"></i>
-                                            {{ $restaurant->address }}</p>
-                                        </p>
-                                        <p>Virtuvė: {{ $restaurant->menu->title }}</p>
+                                    <div class="grid gap-2 justify-center items-between text-cyan-900 h-[100%]">
+                                        <div>
+                                            <p class="mb-2"><i class="fa-solid fa-location-dot w-5"></i>
+                                                {{ $restaurant->address }}</p>
+                                            </p>
+                                            <p><i class="fa-solid fa-bowl-rice w-6"></i>Virtuvė:
+                                                {{ $restaurant->menu->title }}</p>
+                                        </div>
+                                        <a href="{{ route('meals-index') . '?restaurant_id=' . $restaurant->id }}"
+                                            class="primary-btn self-end justify-self-start py-1.5 inline-block">Produktai</a>
                                     </div>
                                 </div>
                             </div>

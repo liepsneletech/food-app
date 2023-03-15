@@ -44,7 +44,7 @@ html {
 
 @layer components {
     .primary-heading {
-        @apply font-['Yeseva_One'] text-cyan-800 text-[44px];
+        @apply font-['Yeseva_One'] text-cyan-800 text-[35px] md:text-[44px];
     }
 
     .primary-btn {
