@@ -1,12 +1,10 @@
 <x-front-layout>
 
     {{-- hero section --}}
-    <section
-        class="hero p-0 bg-[url('/public/assets/img/hero-bg-mobile.jpg')] md:bg-[url('/public/assets/img/hero-bg.jpg')] bg-cover bg-bottom md:bg-right bg-no-repeat md:bg-fixed h-[96vh] md:h-[85.5vh] flex items-start md:items-center relative before:absolute before:w-full before:h-full before:z-10 before:bg-[#06b5d41f]">
+    <section class="hero">
         <div class="container">
             <div class=" flex flex-col items-center md:items-end gap-4 md:pr-10">
-                <h1
-                    class="primary-heading text-center md:text-right w-full sm:w-[60%] lg:w-[50%] xl:w-full leading-tight text-[35px] lg:text-[44px] pt-20 md:pt-0 lg:pt-0 z-20">
+                <h1 class="primary-heading hero-heading">
                     Atrask naujus skonius!
                 </h1>
                 <p
@@ -69,8 +67,8 @@
 
 
     {{-- slider section --}}
-    <section class="slider-section p-0">
-        <h2 class="primary-heading text-center mb-8 mt-5">Restoranai</h2>
+    <section class="hidden md:block slider-section p-0">
+        <h2 class="primary-heading text-center mb-12 mt-5">Restoranai</h2>
         <div class="relative">
             <div class="slider-container">
                 @foreach ($restaurants as $restaurant)

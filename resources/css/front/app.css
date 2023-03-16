@@ -38,13 +38,13 @@ html {
 
 @layer base {
     section {
-        @apply py-20 px-6;
+        @apply py-12 md:py-20 px-6;
     }
 }
 
 @layer components {
     .primary-heading {
-        @apply font-['Yeseva_One'] text-cyan-800 text-[35px] md:text-[44px];
+        @apply font-['Yeseva_One'] text-cyan-800 text-[35px] lg:text-[44px] leading-tight;
     }
 
     .primary-btn {
@@ -61,6 +61,14 @@ html {
 
     .slider-heading {
         @apply text-white text-4xl font-['Yeseva_One'];
+    }
+
+    .hero-heading {
+        @apply text-center md:text-right w-full sm:w-[60%] lg:w-[50%] xl:w-full leading-tight text-[35px] lg:text-[44px] pt-20 md:pt-0 lg:pt-0 z-20;
+    }
+
+    .hero {
+        @apply relative flex items-start md:items-center min-h-[96vh] md:h-[85.5vh] p-0 pb-96 md:pb-0 bg-[url('/public/assets/img/hero-bg-mobile.jpg')] md:bg-[url('/public/assets/img/hero-bg.jpg')] bg-cover bg-bottom md:bg-right bg-no-repeat md:bg-fixed before:absolute before:w-full before:h-full before:z-10 before:bg-[#06b5d41f];
     }
 }
 
