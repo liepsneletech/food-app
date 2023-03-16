@@ -49,9 +49,9 @@ class RestaurantController extends Controller
             $name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
             $fileName = $name . '-' . uniqid() . '.jpg';
 
-            $image = Image::make($image)->resize(500, null, function ($constraint) {
+            $image = Image::make($image)->resize(1600, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->crop(500, 300)->encode('jpg');
+            })->crop(1600, 960)->encode('jpg');
 
             Storage::put("public/meals/$fileName", $image);
             $incomingFields['img'] = "/storage/meals/$fileName";
@@ -95,9 +95,9 @@ class RestaurantController extends Controller
             $name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
             $fileName = $name . '-' . uniqid() . '.jpg';
 
-            $image = Image::make($image)->resize(500, null, function ($constraint) {
+            $image = Image::make($image)->resize(1600, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->crop(500, 300)->encode('jpg');
+            })->crop(1600, 960)->encode('jpg');
 
             Storage::put("public/meals/$fileName", $image);
             $incomingFields['img'] = "/storage/meals/$fileName";

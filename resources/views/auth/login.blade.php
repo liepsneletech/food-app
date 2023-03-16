@@ -1,5 +1,5 @@
 <x-front-layout>
-    <div class="min-h-[86vh] bg-[url('/public/assets/img/hero-bg.jpg')] bg-cover bg-no-repeat bg-fixed py-20">
+    <div class="min-h-[86vh] py-20 bg-[url('/public/assets/img/hero-bg.jpg')] bg-cover bg-no-repeat bg-fixed">
         <x-auth-card>
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />

@@ -80,7 +80,7 @@
                         </a>
                     </article>
                 @empty
-                    <p>Nepridėtas nė vienas patiekalas.</p>
+                    <p class="text-gray-500">Nepridėtas nė vienas patiekalas.</p>
                 @endforelse
             </div>
         </div>

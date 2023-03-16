@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 @empty
-                    <p>Nepridėtas nė vienas restoranas.</p>
+                    <p class="text-gray-500">Nepridėtas nė vienas restoranas.</p>
                 @endforelse
             </div>
         </div>

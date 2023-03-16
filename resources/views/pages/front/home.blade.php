@@ -2,25 +2,25 @@
 
     {{-- hero section --}}
     <section
-        class="hero bg-[url('/public/assets/img/hero-bg-mobile.jpg')] md:bg-[url('/public/assets/img/hero-bg.jpg')] bg-cover bg-bottom md:bg-right bg-no-repeat md:bg-fixed h-[96vh] md:h-[85.5vh] flex items-start md:items-center relative">
+        class="hero p-0 bg-[url('/public/assets/img/hero-bg-mobile.jpg')] md:bg-[url('/public/assets/img/hero-bg.jpg')] bg-cover bg-bottom md:bg-right bg-no-repeat md:bg-fixed h-[96vh] md:h-[85.5vh] flex items-start md:items-center relative before:absolute before:w-full before:h-full before:z-10 before:bg-[#06b5d41f]">
         <div class="container">
-            <div class=" flex flex-col items-center md:items-end gap-4">
+            <div class=" flex flex-col items-center md:items-end gap-4 md:pr-10">
                 <h1
-                    class="primary-heading text-center md:text-right w-full lg:w-[50%] xl:w-full leading-tight text-[35px] lg:text-[44px]">
+                    class="primary-heading text-center md:text-right w-full sm:w-[60%] lg:w-[50%] xl:w-full leading-tight text-[35px] lg:text-[44px] pt-20 md:pt-0 lg:pt-0 z-20">
                     Atrask naujus skonius!
                 </h1>
                 <p
-                    class="font-['Josefin_Sans'] w-full md:w-[67%] lg:w-[40%] text-center md:text-right mb-4 text-cyan-900">
+                    class="font-['Josefin_Sans'] w-full md:w-[58%] lg:w-[40%] text-center md:text-right mb-4 text-cyan-900 z-20 px-7 md:px-0">
                     Curabitur
                     aliquet quam
                     amet,
                     consectetur
                     adipiscing elit lorem ut libero malesuada luctus et ultrices posuere cubilia feugiat adipiscing elit
                     ac diam sit amet.</p>
-                <a href="{{ route('restaurants-index') }}" class="primary-btn inline-block">Restoranai</a>
+                <a href="{{ route('restaurants-index') }}" class="primary-btn inline-block z-20">Restoranai</a>
             </div>
             <a href="#popular-meals"
-                class="hidden md:block text-3xl opacity-85 text-cyan-800 absolute right-[50%] translate-x-1/2 bottom-8 animate-pulse"><i
+                class="hidden md:block text-3xl opacity-85 text-cyan-800 absolute right-[50%] translate-x-1/2 bottom-8 animate-pulse z-20"><i
                     class="fa-solid fa-angles-down"></i></a>
         </div>
     </section>
@@ -62,7 +62,7 @@
                     </a>
                 </article>
             @empty
-                <p>Nepridėtas nė vienas patiekalas.</p>
+                <p class="text-gray-500">Nepridėtas nė vienas patiekalas.</p>
             @endforelse
         </div>
     </section>
@@ -70,28 +70,29 @@
 
     {{-- slider section --}}
     <section class="slider-section p-0">
-        <h2 class="primary-heading text-center mb-14 mt-5">Naujausi restoranai</h2>
+        <h2 class="primary-heading text-center mb-8 mt-5">Restoranai</h2>
         <div class="relative">
-            <div class="slider-container ">
-                <div class="slide">
-                    <h3 class="slider-heading">Slide 1</h3>
-                    <img src="/assets/img/slide-1.jpg" alt="abstraction image" class="slide-img">
-                </div>
-                <div class="slide">
-                    <h3 class="slider-heading">Slide 2</h3>
-                    <img src="/assets/img/slide-2.jpg" alt="abstraction image" class="slide-img">
-                </div>
-                <div class="slide">
-                    <h3 class="slider-heading">Slide 3</h3>
-                    <img src="/assets/img/slide-3.jpg" alt="abstraction image" class="slide-img">
-                </div>
+            <div class="slider-container">
+                @foreach ($restaurants as $restaurant)
+                    <div class="slide">
+                        <div class="p-10 z-20 absolute top-1/2 -translate-y-1/2 bg-[] rounded-xl text-center">
+                            <h3 class="slider-heading mb-4"> - {{ $restaurant->title }} -</h3>
+                            <a href="{{ route('meals-index') . '?restaurant_id=' . $restaurant->id }}"
+                                class="primary-btn inline-block top-[70%]">Patiekalai</a>
+                        </div>
+                        <div
+                            class="before:absolute before:w-full before:block before:h-full before:z-10 before:bg-[#06b5d477]">
+                            <img src="{{ $restaurant->img }}" alt="Restaurant img" class="w-full inline-block">
+                        </div>
+                    </div>
+                @endforeach
             </div>
             <div class="btns-container">
                 <button type="button"
-                    class="prevBtn pl-5 text-white text-2xl absolute left-0 top-1/2 -translate-y-1/3"><i
+                    class="prevBtn pl-5 text-white text-2xl absolute left-0 top-1/2 -translate-y-1/3 z-10"><i
                         class="fa-solid fa-chevron-left"></i></button>
                 <button type="button"
-                    class="nextBtn pr-5 text-white text-2xl absolute right-0 top-1/2 -translate-y-1/3"><i
+                    class="nextBtn pr-5 text-white text-2xl absolute right-0 top-1/2 -translate-y-1/3 z-10"><i
                         class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>

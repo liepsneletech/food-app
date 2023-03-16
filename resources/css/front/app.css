@@ -60,7 +60,7 @@ html {
     }
 
     .slider-heading {
-        @apply text-white text-lg;
+        @apply text-white text-4xl font-['Yeseva_One'];
     }
 }
 
