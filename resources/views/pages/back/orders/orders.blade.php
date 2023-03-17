@@ -75,7 +75,7 @@
                         </div>
                     </article>
                 @empty
-                    <p>Užsakymų nėra</p>
+                    <p class="text-gray-500">Užsakymų nėra</p>
                 @endforelse
             </div>
         </div>

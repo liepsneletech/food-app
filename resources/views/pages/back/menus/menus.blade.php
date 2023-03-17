@@ -43,7 +43,8 @@
                         </div>
                     </div>
                 @empty
-                    <p>Nepridėta nė viena virtuvė.</p>
+                    <p class="text-gray-500"
+                    >Nepridėta nė viena virtuvė.</p>
                 @endforelse
             </div>
         </div>
